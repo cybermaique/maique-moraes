@@ -7,7 +7,7 @@ export function RootDocument({ locale, children }: { locale: Locale; children: R
   const t = getDictionary(locale);
   return (
     <html lang={languageTags[locale]} className={fontVariables}>
-      <body>
+      <body id="top">
         <a
           href="#main"
           className="sr-only z-[100] rounded-full bg-ink px-5 py-3 font-semibold text-paper focus:not-sr-only focus:fixed focus:top-4 focus:left-4"

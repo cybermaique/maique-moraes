@@ -272,6 +272,15 @@
     opacity: 0.55;
   }
 
+  .night-grid {
+    background-image:
+      linear-gradient(var(--color-night-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-night-line) 1px, transparent 1px);
+    background-size: 3rem 3rem;
+    mask-image: radial-gradient(ellipse 60% 70% at 85% 10%, #000 0%, transparent 70%);
+    opacity: 0.6;
+  }
+
   /* Crop marks used on figures. */
   .crop-marks {
     position: relative;
@@ -552,4 +561,37 @@
       transform: translateY(-2.25rem);
     }
   }
+}
+
+/* ─── Work cards ───────────────────────────────────────────── */
+.case-art .art-signal-fill {
+  fill: var(--color-signal);
+}
+.case-art .art-signal-stroke {
+  stroke: var(--color-signal);
+}
+.work-card {
+  transition:
+    border-color 0.5s var(--ease-out-expo),
+    background-color 0.5s var(--ease-out-expo);
+}
+.work-card:hover,
+.work-card:focus-within {
+  border-color: rgb(154 166 255 / 0.45);
+  background-color: var(--color-night-3);
+}
+.work-card-art svg {
+  transition: transform 0.9s var(--ease-out-expo);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .work-card:hover .work-card-art svg {
+    transform: scale(1.04);
+  }
+}
+.work-card a:focus-visible {
+  outline: none;
+}
+.work-card:has(a:focus-visible) {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 4px;
 }

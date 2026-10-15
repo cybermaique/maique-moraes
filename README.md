@@ -1,7 +1,7 @@
 # maique-moraes
 
 Personal website of **Maique Moraes**, Senior Full Stack Software Engineer.
-English at `/`, Portuguese at `/pt`, with case studies at `/work/<slug>` and `/pt/work/<slug>`.
+English at `/`, Portuguese at `/pt`, with case studies at `/work/<slug>` and `/pt/work/<slug>`, and articles at `/notes/<slug>` and `/pt/notes/<slug>`.
 
 Built with Next.js 16 (App Router, fully static), React 19, TypeScript, and Tailwind CSS 4.
 
@@ -39,6 +39,7 @@ src/
   components/
     home/              Hero, system diagram, and homepage sections
     work/              Case-study page, card artwork, interactive diagrams
+    notes/             Article page for field notes expanded into full stories
     layout/            Header, contact, footer, shared document shell
     ui/                Icons and small primitives
   content/

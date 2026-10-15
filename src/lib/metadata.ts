@@ -1,5 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { casePath, getCaseStudy, getDictionary, homePath, languageTags, profile, type Locale } from "@/content";
+import {
+  articlePath,
+  casePath,
+  getArticle,
+  getCaseStudy,
+  getDictionary,
+  homePath,
+  languageTags,
+  profile,
+  type Locale,
+} from "@/content";
 import { getSiteUrl, isIndexable } from "./site-url";
 
 export const viewport: Viewport = {
@@ -97,5 +107,27 @@ export function caseMetadata(locale: Locale, slug: string): Metadata {
       authors: [profile.linkedin],
     },
     twitter: { card: "summary_large_image", title, description: study.summary },
+  };
+}
+
+export function articleMetadata(locale: Locale, slug: string): Metadata {
+  const article = getArticle(locale, slug);
+  if (!article) return {};
+  const title = `${article.title} — ${profile.name}`;
+  return {
+    title: { absolute: title },
+    description: article.summary,
+    alternates: alternates(locale, (target) => articlePath(target, slug)),
+    openGraph: {
+      type: "article",
+      url: articlePath(locale, slug),
+      title,
+      description: article.summary,
+      siteName: profile.name,
+      locale: openGraphLocales[locale],
+      publishedTime: article.published,
+      authors: [profile.linkedin],
+    },
+    twitter: { card: "summary_large_image", title, description: article.summary },
   };
 }

@@ -31,7 +31,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         <WorkSection t={t} locale={locale} />
         <ExperienceSection t={t} />
         <ApproachSection t={t} />
-        <NotesSection t={t} />
+        <NotesSection t={t} locale={locale} />
         <AiWorkflowSection t={t} />
         <ToolkitSection t={t} />
         <BackgroundSection t={t} />

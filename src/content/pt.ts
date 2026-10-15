@@ -364,6 +364,7 @@ export const pt: Dictionary = {
     title: "Pequenas histórias de produção.",
     intro: "Nem todo aprendizado vem de um grande projeto. Algumas investigações que moldaram meu jeito de trabalhar.",
     lessonLabel: "Aprendizado",
+    readArticle: "Ler a história completa",
     items: [
       {
         tag: "React · Performance",
@@ -382,6 +383,7 @@ export const pt: Dictionary = {
         title: "Pipeline verde, aplicação fora do ar",
         body: "Build aprovado, testes aprovados, imagem publicada — e a nova revisão no Azure Container Apps nunca ficava pronta. Logs e eventos mostraram o NestJS ouvindo na porta 3000 enquanto o ingress esperava a 8080. Alinhei a configuração, validei health check e endpoints e revisei os outros ambientes para evitar a mesma divergência.",
         lesson: "Um pipeline bem-sucedido prova o build, não o serviço rodando.",
+        article: "green-pipeline-unhealthy-app",
       },
       {
         tag: "Arquitetura · Colaboração",
@@ -390,6 +392,114 @@ export const pt: Dictionary = {
         lesson: "Um teste compartilhado resolve uma divergência mais rápido do que um debate longo.",
       },
     ],
+  },
+  articles: [
+    {
+      slug: "green-pipeline-unhealthy-app",
+      tag: "Entrega · Containers",
+      title: "Pipeline verde, aplicação fora do ar",
+      summary:
+        "Build aprovado, testes aprovados, imagem publicada — e a nova revisão nunca ficava pronta. Uma divergência de porta entre um serviço NestJS e o Azure Container Apps, e o que ela me ensinou sobre o que um pipeline realmente prova.",
+      published: "2026-10-15",
+      blocks: [
+        {
+          kind: "paragraph",
+          text: "Tudo no pipeline estava verde. O build passou, os testes passaram e a imagem do container foi publicada. Por qualquer sinal que o pipeline pudesse dar, a entrega estava concluída. Mas, no Azure Container Apps, a nova revisão do serviço NestJS nunca ficava pronta.",
+        },
+        {
+          kind: "paragraph",
+          text: "Não havia nada de errado no código. O problema estava no espaço entre a aplicação e a plataforma que a executa — um espaço que nenhuma etapa do pipeline observava.",
+        },
+        { kind: "heading", text: "O que “pronto” significa no Azure Container Apps" },
+        {
+          kind: "paragraph",
+          text: "No Azure Container Apps, publicar uma nova imagem cria uma nova revisão da aplicação. Com o ingress habilitado, o tráfego vai para uma única porta de destino no container, e a plataforma verifica essa porta antes de considerar a revisão saudável. Se você não define seus próprios health probes, ela adiciona probes TCP padrão apontando para essa mesma porta.",
+        },
+        {
+          kind: "paragraph",
+          text: "Ou seja, “pronto” é um acordo em tempo de execução: o processo precisa estar ouvindo onde a plataforma espera. Se não estiver, a imagem pode estar perfeita e a revisão mesmo assim nunca fica pronta.",
+        },
+        { kind: "heading", text: "Seguindo as evidências" },
+        {
+          kind: "paragraph",
+          text: "Quando um deploy falha, a tentação é desconfiar da mudança de código mais recente. O caminho mais rápido foi ler o que a própria plataforma estava dizendo: os logs do container e os eventos da revisão.",
+        },
+        {
+          kind: "paragraph",
+          text: "Juntos, eles contavam uma história clara. A aplicação tinha subido — o NestJS estava ouvindo na porta 3000. O ingress estava configurado para mandar tráfego para a porta 8080. A plataforma continuava verificando uma porta onde nada respondia, e por isso a revisão nunca ficava pronta. Duas configurações, cada uma razoável isoladamente, simplesmente discordavam.",
+        },
+        { kind: "heading", text: "Por que o pipeline não tinha como ver" },
+        {
+          kind: "paragraph",
+          text: "Um pipeline responde às perguntas que você faz a ele. O código compila? Os testes passam? A imagem pode ser gerada e publicada? A resposta para tudo isso era sim.",
+        },
+        {
+          kind: "paragraph",
+          text: "Só que a porta não é uma propriedade só do código. É um contrato entre a aplicação e o ambiente que a executa, e ele é configurado em dois lugares: onde a aplicação decide em qual porta ouvir e onde a plataforma decide qual porta chamar. Nada no pipeline subia a imagem com as configurações da plataforma e pedia uma resposta na porta esperada — então a divergência ficou invisível até a plataforma tentar usá-la.",
+        },
+        { kind: "heading", text: "A correção, e a pergunta seguinte" },
+        {
+          kind: "paragraph",
+          text: "Alinhei a configuração para que a aplicação e o ingress concordassem sobre a porta e, em seguida, validei que os health checks passavam e que os endpoints respondiam no ambiente publicado.",
+        },
+        {
+          kind: "paragraph",
+          text: "A correção em si foi pequena. A pergunta mais útil veio depois: se isso divergiu aqui, onde mais pode ter divergido? Revisei os outros ambientes em busca da mesma diferença, para que o próximo deploy não esbarrasse na mesma falha em outro lugar.",
+        },
+        { kind: "heading", text: "Proteções que valem a pena" },
+        {
+          kind: "paragraph",
+          text: "Esse tipo de falha é barato de evitar. Algumas verificações fecham a distância entre “o build passou” e “o serviço está rodando”:",
+        },
+        {
+          kind: "list",
+          items: [
+            {
+              term: "Uma única fonte para a porta.",
+              text: "Ouvir numa variável PORT em vez de um número fixo no código, definida junto com a porta de destino do ingress — uma decisão em vez de duas suposições.",
+            },
+            {
+              term: "Health probes explícitos.",
+              text: "Apontar os probes de inicialização e de prontidão para um endpoint de saúde de verdade, para que “pronto” signifique que a aplicação consegue atender requisições, e não só que existe uma porta aberta.",
+            },
+            {
+              term: "Um smoke check depois de cada deploy.",
+              text: "Chamar o endpoint de saúde pelo ingress real assim que a revisão subir, e reprovar a entrega se ele não responder.",
+            },
+            {
+              term: "Configuração de ambiente como código.",
+              text: "Manter portas, probes e configurações de ingress versionadas e revisadas, e compará-las entre ambientes em vez de corrigir cada um à mão.",
+            },
+          ],
+        },
+        {
+          kind: "code",
+          caption: "Ilustrativo: um ponto de entrada NestJS que ouve na porta configurada",
+          language: "TypeScript",
+          code: `// main.ts
+const app = await NestFactory.create(AppModule);
+
+// A plataforma decide a porta; a aplicação acompanha.
+const port = Number(process.env.PORT ?? 3000);
+await app.listen(port, "0.0.0.0");`,
+        },
+        { kind: "heading", text: "O que ficou" },
+        {
+          kind: "paragraph",
+          text: "Um pipeline verde é evidência sobre o artefato: o código compila, os testes passam, a imagem existe. Ele não diz nada sobre a saúde do serviço onde ele roda. Um deploy termina quando o serviço em execução responde — não quando o último job fica verde.",
+        },
+      ],
+      takeaway: "Um pipeline bem-sucedido prova o build, não o serviço rodando.",
+      scope:
+        "Um incidente real do meu trabalho, contado de memória. Empresa, nomes de ambientes e configurações internas ficaram de fora, e o trecho de código é ilustrativo, não o original. Não há números de indisponibilidade nem de tempo de resolução. As proteções são recomendações, não uma lista de mudanças que eu fiz.",
+    },
+  ],
+  article: {
+    back: "Voltar às notas de campo",
+    published: "Publicado em",
+    readingTime: "{minutes} min de leitura",
+    takeaway: "Aprendizado",
+    scope: "Escopo, com transparência",
   },
   aiWorkflow: {
     label: "Engenharia com IA",

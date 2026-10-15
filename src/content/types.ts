@@ -108,6 +108,26 @@ export interface FieldNote {
   title: string;
   body: string;
   lesson: string;
+  /** Slug of the full article that expands this note, when there is one. */
+  article?: string;
+}
+
+export type ArticleBlock =
+  | { kind: "paragraph"; text: string }
+  | { kind: "heading"; text: string }
+  | { kind: "list"; items: { term: string; text: string }[] }
+  | { kind: "code"; caption: string; language: string; code: string };
+
+export interface Article {
+  slug: string;
+  tag: string;
+  title: string;
+  summary: string;
+  /** ISO date (YYYY-MM-DD). */
+  published: string;
+  blocks: ArticleBlock[];
+  takeaway: string;
+  scope: string;
 }
 
 export interface Dictionary {
@@ -158,7 +178,16 @@ export interface Dictionary {
     earlier: Role[];
   };
   approach: { label: string; title: string; intro: string; principles: Principle[] };
-  notes: { label: string; title: string; intro: string; lessonLabel: string; items: FieldNote[] };
+  notes: { label: string; title: string; intro: string; lessonLabel: string; readArticle: string; items: FieldNote[] };
+  articles: Article[];
+  article: {
+    back: string;
+    published: string;
+    /** `{minutes}` is replaced with the estimated reading time. */
+    readingTime: string;
+    takeaway: string;
+    scope: string;
+  };
   aiWorkflow: {
     label: string;
     title: string;

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { casePath, caseSlugs, homePath, languageTags, type Locale } from "@/content";
+import { articlePath, articleSlugs, casePath, caseSlugs, homePath, languageTags, type Locale } from "@/content";
 import { getSiteUrl } from "@/lib/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -21,5 +21,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...entry(homePath, 1),
     ...caseSlugs.flatMap((slug) => entry((locale) => casePath(locale, slug), 0.8)),
+    ...articleSlugs.flatMap((slug) => entry((locale) => articlePath(locale, slug), 0.7)),
   ];
 }

@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { getCaseStudy, getDictionary, profile, type Locale } from "@/content";
+import { getArticle, getCaseStudy, getDictionary, profile, type Locale } from "@/content";
 
 export const ogSize = { width: 1200, height: 630 };
 
@@ -45,6 +45,17 @@ export function renderCaseOgImage(locale: Locale, slug: string) {
     lines: [study?.title ?? t.meta.title],
     fontSize: 76,
     footer: study ? `${study.index}  ·  ${study.company}  ·  ${study.domain}` : t.hero.eyebrow,
+    badge: t.hero.eyebrow,
+  });
+}
+
+export function renderArticleOgImage(locale: Locale, slug: string) {
+  const t = getDictionary(locale);
+  const article = getArticle(locale, slug);
+  return renderOgImage({
+    lines: [article?.title ?? t.meta.title],
+    fontSize: 76,
+    footer: article ? `${t.notes.label}  ·  ${article.tag}` : t.hero.eyebrow,
     badge: t.hero.eyebrow,
   });
 }

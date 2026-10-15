@@ -1,6 +1,6 @@
 import { en } from "./en";
 import { pt } from "./pt";
-import type { CaseStudy, Dictionary, Locale } from "./types";
+import type { Article, CaseStudy, Dictionary, Locale } from "./types";
 
 export * from "./types";
 export { profile } from "./profile";
@@ -18,10 +18,21 @@ export function getCaseStudy(locale: Locale, slug: string): CaseStudy | undefine
 /** Slugs are shared across locales, so a case study always has a translated twin. */
 export const caseSlugs = en.cases.map((study) => study.slug);
 
+export function getArticle(locale: Locale, slug: string): Article | undefined {
+  return dictionaries[locale].articles.find((article) => article.slug === slug);
+}
+
+/** Like case studies, articles share slugs across locales. */
+export const articleSlugs = en.articles.map((article) => article.slug);
+
 export function homePath(locale: Locale): string {
   return locale === "en" ? "/" : "/pt";
 }
 
 export function casePath(locale: Locale, slug: string): string {
   return `${locale === "en" ? "" : "/pt"}/work/${slug}`;
+}
+
+export function articlePath(locale: Locale, slug: string): string {
+  return `${locale === "en" ? "" : "/pt"}/notes/${slug}`;
 }

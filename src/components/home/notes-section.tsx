@@ -1,10 +1,12 @@
-import type { Dictionary } from "@/content";
+import Link from "next/link";
+import { articlePath, type Dictionary, type Locale } from "@/content";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { ArrowRight } from "@/components/ui/icons";
 
-export function NotesSection({ t }: { t: Dictionary }) {
+export function NotesSection({ t, locale }: { t: Dictionary; locale: Locale }) {
   const { notes } = t;
   return (
-    <section aria-labelledby="notes-title" className="py-24 md:py-32">
+    <section id="notes" aria-labelledby="notes-title" className="py-24 md:py-32">
       <div className="shell">
         <SectionHeading id="notes-title" label={notes.label} title={notes.title} intro={notes.intro} />
 
@@ -23,6 +25,16 @@ export function NotesSection({ t }: { t: Dictionary }) {
                     <span className="mono-label mb-1 block text-accent-deep">{notes.lessonLabel}</span>
                     {note.lesson}
                   </p>
+                  {note.article && (
+                    <Link
+                      href={articlePath(locale, note.article)}
+                      className="group mt-6 inline-flex items-center gap-2 rounded font-semibold text-accent-deep"
+                    >
+                      {notes.readArticle}
+                      <span className="sr-only">: {note.title}</span>
+                      <ArrowRight size={17} className="transition-transform duration-500 group-hover:translate-x-1" />
+                    </Link>
+                  )}
                 </div>
               </article>
             </li>

@@ -364,6 +364,7 @@ export const en: Dictionary = {
     title: "Small stories from production.",
     intro: "Not every lesson comes from a big project. A few debugging stories that shaped how I work.",
     lessonLabel: "Takeaway",
+    readArticle: "Read the full story",
     items: [
       {
         tag: "React · Performance",
@@ -382,6 +383,7 @@ export const en: Dictionary = {
         title: "A green pipeline, an unhealthy app",
         body: "Build passed, tests passed, image published — yet the new Azure Container Apps revision never became ready. Logs and revision events showed NestJS listening on port 3000 while ingress expected 8080. I aligned the configuration, verified health checks and endpoints, and reviewed other environments for the same drift.",
         lesson: "A successful pipeline proves the build, not the running service.",
+        article: "green-pipeline-unhealthy-app",
       },
       {
         tag: "Architecture · Collaboration",
@@ -390,6 +392,114 @@ export const en: Dictionary = {
         lesson: "A shared test settles a disagreement faster than a longer debate.",
       },
     ],
+  },
+  articles: [
+    {
+      slug: "green-pipeline-unhealthy-app",
+      tag: "Delivery · Containers",
+      title: "A green pipeline, an unhealthy app",
+      summary:
+        "Build passed, tests passed, image published — and the new revision never became ready. A port mismatch between a NestJS service and Azure Container Apps, and what it taught me about what a pipeline actually proves.",
+      published: "2026-10-15",
+      blocks: [
+        {
+          kind: "paragraph",
+          text: "Every check in the pipeline was green. The build passed, the tests passed, and the container image was published. By every signal the pipeline could give, the release was done. But on Azure Container Apps, the new revision of the NestJS service never became ready.",
+        },
+        {
+          kind: "paragraph",
+          text: "Nothing was wrong with the code. The problem lived in the gap between the application and the platform that runs it — a gap no step of the pipeline was looking at.",
+        },
+        { kind: "heading", text: "What “ready” means on Azure Container Apps" },
+        {
+          kind: "paragraph",
+          text: "On Azure Container Apps, deploying a new image creates a new revision of the app. When ingress is enabled, it forwards traffic to one target port on the container, and the platform checks that port before it treats the revision as healthy. If you don’t define health probes of your own, it adds default TCP probes against that same port.",
+        },
+        {
+          kind: "paragraph",
+          text: "So “ready” is a runtime agreement: the process has to be listening where the platform expects it. If it isn’t, the image can be perfectly fine and the revision will still never become ready.",
+        },
+        { kind: "heading", text: "Following the evidence" },
+        {
+          kind: "paragraph",
+          text: "A failed rollout makes it tempting to suspect the newest code change. The faster route was to read what the platform itself was reporting: the container’s logs and the revision’s events.",
+        },
+        {
+          kind: "paragraph",
+          text: "Together they told a clear story. The application had started — NestJS was listening on port 3000. The ingress was configured to send traffic to port 8080. The platform kept checking a port where nothing was listening, so the revision never became ready. Two settings, each reasonable on its own, simply disagreed.",
+        },
+        { kind: "heading", text: "Why the pipeline couldn’t see it" },
+        {
+          kind: "paragraph",
+          text: "A pipeline answers the questions you give it. Does the code compile? Do the tests pass? Can the image be built and published? All of those were yes.",
+        },
+        {
+          kind: "paragraph",
+          text: "But the port isn’t a property of the code alone. It’s a contract between the application and the environment that runs it, and it’s configured in two places: where the app decides which port to bind, and where the platform decides which port to call. Nothing in the pipeline started the image with the platform’s settings and asked it to answer on the expected port, so the mismatch stayed invisible until the platform tried to use it.",
+        },
+        { kind: "heading", text: "The fix, and the question after it" },
+        {
+          kind: "paragraph",
+          text: "I aligned the configuration so the application and the ingress agreed on the port, then verified that the health checks passed and the endpoints responded in the deployed environment.",
+        },
+        {
+          kind: "paragraph",
+          text: "The fix itself was small. The more useful question came next: if this drifted here, where else could it have drifted? I reviewed the other environments for the same mismatch, so the next deployment wouldn’t hit the same failure somewhere else.",
+        },
+        { kind: "heading", text: "Guardrails worth adding" },
+        {
+          kind: "paragraph",
+          text: "This kind of failure is cheap to prevent. A few checks close the gap between “the build passed” and “the service is running”:",
+        },
+        {
+          kind: "list",
+          items: [
+            {
+              term: "One source for the port.",
+              text: "Bind to a configured PORT instead of a hard-coded number, and set it alongside the ingress target port — one decision instead of two assumptions.",
+            },
+            {
+              term: "Explicit health probes.",
+              text: "Point startup and readiness probes at a real health endpoint, so “ready” means the app can serve requests, not just that a socket is open.",
+            },
+            {
+              term: "A smoke check after every rollout.",
+              text: "Call the health endpoint through the real ingress once the revision is up, and fail the release if it doesn’t answer.",
+            },
+            {
+              term: "Environment configuration as code.",
+              text: "Keep ports, probes, and ingress settings versioned and reviewed, and compare them across environments instead of fixing each one by hand.",
+            },
+          ],
+        },
+        {
+          kind: "code",
+          caption: "Illustrative: a NestJS entry point that binds to the configured port",
+          language: "TypeScript",
+          code: `// main.ts
+const app = await NestFactory.create(AppModule);
+
+// The platform decides the port; the app follows it.
+const port = Number(process.env.PORT ?? 3000);
+await app.listen(port, "0.0.0.0");`,
+        },
+        { kind: "heading", text: "What I took from it" },
+        {
+          kind: "paragraph",
+          text: "A green pipeline is evidence about the artifact: the code compiles, the tests pass, the image exists. It says nothing about whether the service is healthy where it runs. A deployment is finished when the running service answers — not when the last job turns green.",
+        },
+      ],
+      takeaway: "A successful pipeline proves the build, not the running service.",
+      scope:
+        "A real incident from my work, told from memory. The employer, environment names, and internal configuration are left out, and the code sample is illustrative, not the original. No downtime figure or time-to-resolution is claimed. The guardrails are recommendations, not a list of changes I made.",
+    },
+  ],
+  article: {
+    back: "Back to field notes",
+    published: "Published",
+    readingTime: "{minutes} min read",
+    takeaway: "Takeaway",
+    scope: "Scope, honestly",
   },
   aiWorkflow: {
     label: "AI-assisted engineering",

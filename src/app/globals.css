@@ -99,6 +99,7 @@ html.theme-transition * {
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     scroll-padding-top: 6rem;
+    scrollbar-gutter: stable;
   }
 
   body {
@@ -1090,5 +1091,295 @@ html.theme-transition * {
     50% {
       opacity: 0.35;
     }
+  }
+}
+
+/* ─── Entrance screen ──────────────────────────────────────────
+   Shown when a visitor arrives or reloads (html[data-splash], set
+   before first paint by lib/intro.ts). Enters by itself in ≈2 s, or
+   on any click or key; then lifts like a curtain.
+   ───────────────────────────────────────────────────────────── */
+.entrance {
+  display: none;
+}
+
+/*
+ * While the screen is up the page does not scroll, and the reserved scrollbar gutter
+ * (scrollbar-gutter: stable) takes the screen's colour, so nothing shifts on exit.
+ */
+html[data-splash="show"] {
+  overflow: hidden;
+  background: var(--color-night);
+}
+
+html[data-splash] .entrance {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  overflow: hidden;
+  background: var(--color-night);
+  color: var(--color-snow);
+  cursor: pointer;
+}
+
+html[data-splash="leaving"] .entrance {
+  pointer-events: none;
+}
+
+.entrance-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--color-night-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-night-line) 1px, transparent 1px);
+  background-size: 3rem 3rem;
+  background-position: center;
+  mask-image: radial-gradient(circle at 50% 45%, #000 0%, transparent 62%);
+}
+
+.entrance-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.entrance-glow {
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 16rem;
+  height: 16rem;
+  margin-left: -8rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgb(154 166 255 / 0.22), transparent 65%);
+  pointer-events: none;
+}
+
+.entrance-emblem {
+  position: relative;
+  width: clamp(5.5rem, 22vw, 7.5rem);
+  height: auto;
+  filter: drop-shadow(0 18px 40px rgb(0 0 0 / 0.55));
+}
+
+.entrance-name {
+  margin-top: 2rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.entrance-role {
+  margin-top: 0.75rem;
+  font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+  line-height: 1.4;
+}
+
+.entrance-enter {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 2.25rem;
+  min-height: 3rem;
+  padding: 0 1.4rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--color-snow);
+  color: var(--color-night);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Fills while the visitor waits; when full, the site enters by itself. */
+.entrance-progress {
+  position: absolute;
+  inset: 0;
+  background: var(--color-signal);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+html[data-splash] .entrance-progress {
+  animation: entrance-progress 1.6s linear 0.6s forwards;
+}
+
+.entrance-enter-dot {
+  position: relative;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.entrance-dot,
+.entrance-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.entrance-ring {
+  opacity: 0;
+}
+
+@keyframes entrance-progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-splash] .entrance-glow {
+    animation: entrance-fade 1.2s ease both;
+  }
+  html[data-splash] .entrance-emblem {
+    animation: entrance-emblem 0.8s var(--ease-out-expo) both;
+  }
+  html[data-splash] .entrance-stroke {
+    stroke-dasharray: 1;
+    animation: entrance-draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.25s both;
+  }
+  html[data-splash] .entrance-dot {
+    animation: entrance-pop 0.45s var(--ease-out-expo) 1s both;
+  }
+  html[data-splash] .entrance-ring {
+    animation: entrance-ring 1.1s ease-out 1.15s 2;
+  }
+  html[data-splash] .entrance-name {
+    animation: entrance-rise 0.7s var(--ease-out-expo) 0.35s both;
+  }
+  html[data-splash] .entrance-role {
+    animation: entrance-rise 0.7s var(--ease-out-expo) 0.45s both;
+  }
+  html[data-splash] .entrance-enter {
+    animation: entrance-rise 0.7s var(--ease-out-expo) 0.55s both;
+  }
+
+  /* Exit: the screen lifts like a curtain while its content drifts up and fades. */
+  html[data-splash="leaving"] .entrance {
+    animation: entrance-lift 0.75s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+  }
+  html[data-splash="leaving"] .entrance-inner {
+    animation: entrance-out 0.35s ease forwards;
+  }
+
+  @keyframes entrance-emblem {
+    from {
+      opacity: 0;
+      transform: scale(0.82);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes entrance-draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes entrance-pop {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  @keyframes entrance-ring {
+    from {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(3.2);
+    }
+  }
+  @keyframes entrance-rise {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes entrance-lift {
+    to {
+      transform: translateY(-100%);
+    }
+  }
+  @keyframes entrance-out {
+    to {
+      opacity: 0;
+      transform: translateY(-1.5rem);
+    }
+  }
+}
+
+/* Reduced motion: the same entrance told with fades and the stroke only. */
+@media (prefers-reduced-motion: reduce) {
+  html[data-splash] .entrance-glow,
+  html[data-splash] .entrance-emblem {
+    animation: entrance-fade 0.8s ease both;
+  }
+  html[data-splash] .entrance-stroke {
+    stroke-dasharray: 1;
+    animation: entrance-draw-soft 0.9s ease 0.25s both;
+  }
+  html[data-splash] .entrance-dot {
+    animation: entrance-fade 0.4s ease 1s both;
+  }
+  html[data-splash] .entrance-name {
+    animation: entrance-fade 0.6s ease 0.35s both;
+  }
+  html[data-splash] .entrance-role {
+    animation: entrance-fade 0.6s ease 0.45s both;
+  }
+  html[data-splash] .entrance-enter {
+    animation: entrance-fade 0.6s ease 0.55s both;
+  }
+  html[data-splash="leaving"] .entrance {
+    animation: entrance-fade-out 0.45s ease forwards;
+  }
+
+  @keyframes entrance-draw-soft {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes entrance-fade-out {
+    to {
+      opacity: 0;
+    }
+  }
+}
+
+@keyframes entrance-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media print {
+  .entrance {
+    display: none !important;
   }
 }

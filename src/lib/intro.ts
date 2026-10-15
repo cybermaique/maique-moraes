@@ -1,10 +1,18 @@
 /** Long enough for the opening sequence (≈1.4 s) to finish before its styles are released. */
-const introDurationMs = 2600;
+export const introDurationMs = 2600;
+
+/** Failsafe: if the entrance screen's script never runs, the page frees itself after this. */
+const entranceFailsafeMs = 6000;
 
 /**
- * Runs in <head> before first paint, on every full page load (first visit, reload, or an
- * opened link): it turns on the "drafting" opening sequence (see globals.css,
- * `html[data-intro="play"]`) and releases it once the sequence has finished, so client-side
- * navigations never replay it mid-visit. Without JavaScript there is simply no intro.
+ * Runs in <head> before first paint and decides how the page opens:
+ *
+ * - Arriving from outside the site, or reloading: show the entrance screen
+ *   (`html[data-splash="show"]`, see components/layout/entrance-screen.tsx). The opening
+ *   sequence starts when the visitor enters.
+ * - Navigating between pages of the site: skip the entrance screen and play the opening
+ *   sequence right away (`html[data-intro="play"]`), released once it has finished.
+ *
+ * Without JavaScript neither runs, and the page is simply shown.
  */
-export const introInitScript = `try{var r=document.documentElement;r.dataset.intro="play";setTimeout(function(){delete r.dataset.intro},${introDurationMs})}catch(e){}`;
+export const entranceInitScript = `try{var r=document.documentElement,n=performance.getEntriesByType("navigation")[0],reload=!!n&&n.type==="reload",internal=false;try{internal=!!document.referrer&&new URL(document.referrer).origin===location.origin}catch(e){}var intro=function(){r.dataset.intro="play";setTimeout(function(){delete r.dataset.intro},${introDurationMs})};if(reload||!internal){r.dataset.splash="show";setTimeout(function(){if(r.dataset.splash){delete r.dataset.splash;intro()}},${entranceFailsafeMs})}else{intro()}}catch(e){}`;

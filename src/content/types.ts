@@ -202,4 +202,6 @@ export interface Dictionary {
     next: string;
   };
   notFound: { title: string; body: string; cta: string };
+  /** Entrance screen shown when a visitor arrives or reloads. */
+  entrance: { role: string; place: string; enter: string; enterLabel: string };
 }

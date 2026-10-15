@@ -472,4 +472,10 @@ export const en: Dictionary = {
     body: "The link may be outdated, or the address may have a typo.",
     cta: "Back to the homepage",
   },
+  entrance: {
+    role: "Senior full stack engineer",
+    place: "based in Brazil",
+    enter: "Enter",
+    enterLabel: "Enter site",
+  },
 };

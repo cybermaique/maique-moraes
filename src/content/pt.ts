@@ -472,4 +472,10 @@ export const pt: Dictionary = {
     body: "O link pode estar desatualizado ou o endereço pode ter um erro de digitação.",
     cta: "Voltar para o início",
   },
+  entrance: {
+    role: "Engenheiro full stack sênior",
+    place: "baseado no Brasil",
+    enter: "Entrar",
+    enterLabel: "Entrar no site",
+  },
 };

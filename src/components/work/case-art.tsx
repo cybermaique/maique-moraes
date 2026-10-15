@@ -59,10 +59,11 @@ function BidArt() {
 
 /** One request branching into knowledge, live data, and action — above a guard rail. */
 function AiArt() {
+  // Glyphs: a document (knowledge), a pulse (live data), a pencil (action).
   const targets = [
-    { y: 82, label: "K" },
-    { y: 150, label: "L" },
-    { y: 218, label: "A" },
+    { y: 82, glyph: "M290 72h14l6 6v16h-20zM294 82h10M294 87h10M294 92h6" },
+    { y: 150, glyph: "M282 150h8l4-9 6 18 5-14 3 5h10" },
+    { y: 218, glyph: "M290 228l3-9 13-13 6 6-13 13zM302 210l6 6" },
   ];
   return (
     <g>
@@ -70,7 +71,7 @@ function AiArt() {
       <circle cx="96" cy="150" r="20" className="art-signal-fill" />
       <circle cx="96" cy="150" r="48" stroke="currentColor" strokeOpacity="0.12" strokeDasharray="2 5" />
       {targets.map((target, index) => (
-        <g key={target.label}>
+        <g key={target.y}>
           <path
             d={`M130 150 C 190 150, 200 ${target.y}, 262 ${target.y}`}
             stroke="currentColor"
@@ -79,18 +80,15 @@ function AiArt() {
           />
           {index === 1 && <path d="M130 150 H262" className="art-signal-stroke" strokeWidth="1.5" />}
           <rect x="262" y={target.y - 18} width="76" height="36" rx="18" stroke="currentColor" strokeOpacity="0.35" />
-          <text
-            x="300"
-            y={target.y + 4}
-            textAnchor="middle"
-            fill="currentColor"
-            fillOpacity="0.8"
-            fontFamily="var(--font-mono)"
-            fontSize="12"
-            letterSpacing="1"
-          >
-            {target.label}
-          </text>
+          <path
+            d={target.glyph}
+            stroke="currentColor"
+            strokeOpacity="0.85"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={index === 1 ? "art-signal-stroke" : undefined}
+          />
         </g>
       ))}
       <path d="M248 252h104" stroke="currentColor" strokeOpacity="0.5" strokeWidth="1.5" />

@@ -22,6 +22,7 @@ interface SiteHeaderProps {
 export function SiteHeader({ locale, homeHref, alternateHref, nav, a11y, trackSections = false }: SiteHeaderProps) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<SectionId | null>(null);
+  const [tone, setTone] = useState<"paper" | "night">("paper");
   const toggleRef = useRef<HTMLButtonElement>(null);
   const headerRef = useRef<HTMLElement>(null);
   const other: Locale = locale === "en" ? "pt" : "en";
@@ -46,6 +47,30 @@ export function SiteHeader({ locale, homeHref, alternateHref, nav, a11y, trackSe
       document.removeEventListener("pointerdown", onPointer);
     };
   }, [open]);
+
+  // Match the header to the section underneath it, so it never sits as a pale band on dark areas.
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const header = headerRef.current;
+      if (!header) return;
+      const probeY = header.offsetHeight + 1;
+      const below = document.elementFromPoint(window.innerWidth / 2, probeY);
+      setTone(below?.closest(".on-night") ? "night" : "paper");
+    };
+    const schedule = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
 
   // Highlight the section currently crossing the middle of the viewport.
   useEffect(() => {
@@ -73,7 +98,7 @@ export function SiteHeader({ locale, homeHref, alternateHref, nav, a11y, trackSe
   ];
 
   return (
-    <header ref={headerRef} className="site-header sticky top-0 z-50">
+    <header ref={headerRef} className="site-header sticky top-0 z-50" data-tone={tone}>
       <div className="shell flex h-16 items-center justify-between gap-6 md:h-[4.5rem]">
         <a href={homeHref} className="flex items-center gap-3 rounded-lg" aria-label={a11y.home}>
           <Monogram className="text-ink" />

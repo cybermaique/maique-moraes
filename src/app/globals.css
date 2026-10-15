@@ -309,11 +309,37 @@
 }
 
 /* ─── Header ───────────────────────────────────────────────── */
+/* Registered so the scroll-driven animation can interpolate it. */
+@property --header-alpha {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0.94;
+}
+
 .site-header {
-  background-color: rgb(243 241 234 / 0.88);
+  --header-rgb: 243 241 234;
+  background-color: rgb(var(--header-rgb) / var(--header-alpha));
   border-bottom: 1px solid var(--color-line);
-  backdrop-filter: saturate(1.4) blur(14px);
-  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  color: var(--color-ink);
+  backdrop-filter: saturate(1.4) blur(16px);
+  -webkit-backdrop-filter: saturate(1.4) blur(16px);
+  transition:
+    background-color 0.35s var(--ease-out-expo),
+    border-color 0.35s var(--ease-out-expo),
+    color 0.35s var(--ease-out-expo);
+}
+
+/* Over dark sections the header swaps its tokens, so every child follows. */
+.site-header[data-tone="night"] {
+  --header-rgb: 15 18 17;
+  --color-ink: #eeece5;
+  --color-ink-2: #c4c7bf;
+  --color-muted: #a7aca3;
+  --color-paper: #0f1211;
+  --color-paper-2: #20251f;
+  --color-line: rgb(238 236 229 / 0.12);
+  --color-line-strong: rgb(238 236 229 / 0.3);
+  --color-accent: #9aa6ff;
 }
 
 @supports (animation-timeline: scroll()) {
@@ -324,11 +350,11 @@
   }
   @keyframes header-settle {
     from {
-      background-color: rgb(243 241 234 / 0);
+      --header-alpha: 0;
       border-bottom-color: transparent;
     }
     to {
-      background-color: rgb(243 241 234 / 0.88);
+      --header-alpha: 0.94;
       border-bottom-color: var(--color-line);
     }
   }

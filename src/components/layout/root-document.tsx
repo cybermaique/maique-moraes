@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/next";
 import { fontVariables } from "@/app/fonts";
 import { getDictionary, languageTags, profile, type Locale } from "@/content";
 import { entranceInitScript } from "@/lib/intro";
@@ -24,6 +25,8 @@ export function RootDocument({ locale, children }: { locale: Locale; children: R
           {t.a11y.skip}
         </a>
         {children}
+        {/* Cookieless, aggregated page views (Vercel Web Analytics); see docs/content-review.md. */}
+        <Analytics />
       </body>
     </html>
   );

@@ -32,6 +32,7 @@ Private source files are not committed to this repository.
 | ~15% customer growth (Inlog entry) | Resume, LinkedIn, base §14.1 | Presented, as on LinkedIn, as a shared engineering/product/commercial outcome. |
 | Principles | STR-04, INL-01, UNI-01, EP-05, UNI-02 | Each tied to a described piece of work. |
 | Field notes | EP-01, EP-04, EP-06, EP-03 | Employer intentionally unnamed (the base does not specify it). |
+| Web analytics | Owner request, 15 October 2026 | Vercel Web Analytics: cookieless, aggregated page views only. No custom events, no personal data, no fingerprinting beyond Vercel's daily-rotating hash. |
 | Recommendation quote | LinkedIn (public), 2022 | Original Portuguese on `/pt`; English translation on `/`. Source and translation notes removed from the caption at the owner's request (15 October 2026). |
 | Languages | Resume, base §3.3; owner confirmation, 15 October 2026 | English shown as intermediate. |
 

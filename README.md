@@ -63,7 +63,8 @@ Each language has its own root layout, so every page ships with the correct `<ht
 
 1. Import the GitHub repository in Vercel. The defaults (framework *Next.js*, `npm run build`) work as-is.
 2. Deploy. Production deployments are indexable; preview deployments send `noindex` and a disallow-all `robots.txt`.
-3. Canonical URLs, the sitemap, and social images use `VERCEL_PROJECT_PRODUCTION_URL` automatically. If you add a custom domain, set `NEXT_PUBLIC_SITE_URL` (for example `https://your-domain.com`) in the project's environment variables and redeploy.
+3. Enable **Web Analytics** in the Vercel project (Analytics tab). The `<Analytics />` component is already in the layout; until it is enabled, its script request returns 404.
+4. Canonical URLs, the sitemap, and social images use `VERCEL_PROJECT_PRODUCTION_URL` automatically. If you add a custom domain, set `NEXT_PUBLIC_SITE_URL` (for example `https://your-domain.com`) in the project's environment variables and redeploy.
 
 The display font (Bricolage Grotesque) is self-hosted in `src/app/fonts` under the SIL Open Font License, included alongside it. Social images use the same family fetched from Google Fonts at build time. If the build has no network access, they fall back to the default font.
 

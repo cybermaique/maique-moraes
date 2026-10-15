@@ -137,7 +137,11 @@ export interface Dictionary {
     ctaWork: string;
     ctaResume: string;
     availability: string;
-    location: string;
+    facts: {
+      now: { label: string; value: string };
+      before: { label: string; value: string };
+      based: { label: string; value: string };
+    };
     figure: string;
     figureHint: string;
     layers: [Layer, Layer, Layer];
@@ -177,6 +181,9 @@ export interface Dictionary {
     resume: string;
     backToTop: string;
     footer: string;
+    viewSource: string;
+    /** `{time}` and `{diff}` are replaced at runtime with the visitor-relative values. */
+    timeDiff: { ahead: string; behind: string; same: string };
   };
   caseStudy: {
     back: string;

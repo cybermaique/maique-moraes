@@ -25,7 +25,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       />
       <main id="main">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(profileJsonLd(locale)) }} />
-        <Hero t={t} />
+        <Hero t={t} locale={locale} />
         <ProofStrip proof={t.proof} />
         <WorkSection t={t} locale={locale} />
         <ExperienceSection t={t} />
@@ -33,7 +33,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         <NotesSection t={t} />
         <ToolkitSection t={t} />
         <BackgroundSection t={t} />
-        <ContactSection t={t} />
+        <ContactSection t={t} locale={locale} />
       </main>
       <SiteFooter t={t} />
     </>

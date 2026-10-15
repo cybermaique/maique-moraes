@@ -131,6 +131,11 @@
     outline-color: var(--color-signal);
   }
 
+  /* Status colours need more luminance on dark sections, whatever the theme. */
+  .on-night {
+    --color-live: #4fc27e;
+  }
+
   @media (prefers-reduced-motion: no-preference) {
     html {
       scroll-behavior: smooth;

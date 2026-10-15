@@ -9,6 +9,11 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/maique-moraes/",
   github: "https://github.com/cybermaique",
   resume: "/maique-moraes-resume.pdf",
+  /** This website's public repository. */
+  sourceCode: "https://github.com/cybermaique/maique-moraes",
+  /** João Pessoa observes UTC−3 all year (no daylight saving time). */
+  timeZone: "America/Fortaleza",
+  utcOffsetMinutes: -180,
   location: { city: "João Pessoa", region: "Paraíba", country: "Brazil", countryCode: "BR" },
   knowsAbout: [
     "TypeScript",

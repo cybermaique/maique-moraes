@@ -132,7 +132,7 @@ export function CaseStudyPage({ locale, study }: { locale: Locale; study: CaseSt
             </nav>
           </div>
         </article>
-        <ContactSection t={t} />
+        <ContactSection t={t} locale={locale} />
       </main>
       <SiteFooter t={t} />
     </>

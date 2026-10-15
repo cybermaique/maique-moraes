@@ -100,10 +100,10 @@ export function SiteHeader({ locale, homeHref, alternateHref, nav, a11y, trackSe
 
   return (
     <header ref={headerRef} className="site-header sticky top-0 z-50" data-tone={tone}>
-      <div className="shell flex h-16 items-center justify-between gap-6 md:h-[4.5rem]">
+      <div className="shell flex h-16 items-center justify-between gap-3 sm:gap-6 md:h-[4.5rem]">
         <a href={homeHref} className="flex items-center gap-3 rounded-lg" aria-label={a11y.home}>
           <Monogram className="text-ink" />
-          <span className="font-display text-[1.05rem] font-semibold tracking-[-0.01em]">Maique Moraes</span>
+          <span className="font-display text-[1.05rem] font-semibold tracking-[-0.01em] whitespace-nowrap">Maique Moraes</span>
         </a>
 
         <nav aria-label={a11y.primaryNav} className="hidden md:block">
@@ -129,13 +129,15 @@ export function SiteHeader({ locale, homeHref, alternateHref, nav, a11y, trackSe
             hrefLang={languageTags[other]}
             lang={languageTags[other]}
             aria-label={a11y.switchLanguage}
-            className="mono-label flex h-10 items-center gap-1.5 rounded-full px-3 text-muted transition-colors hover:bg-paper-2 hover:text-ink"
+            className="mono-label flex h-10 items-center gap-1.5 rounded-full px-2 text-muted transition-colors hover:bg-paper-2 hover:text-ink sm:px-3"
           >
             <span className={locale === "en" ? "text-ink" : undefined}>EN</span>
             <span aria-hidden="true" className="text-line-strong">/</span>
             <span className={locale === "pt" ? "text-ink" : undefined}>PT</span>
           </a>
-          <ThemeToggle toLight={a11y.themeToLight} toDark={a11y.themeToDark} />
+          <div className="hidden sm:block">
+            <ThemeToggle toLight={a11y.themeToLight} toDark={a11y.themeToDark} />
+          </div>
           <a
             href={profile.resume}
             target="_blank"
@@ -189,7 +191,10 @@ export function SiteHeader({ locale, homeHref, alternateHref, nav, a11y, trackSe
               </a>
             </li>
           ))}
-          <li className="pt-4 pb-2">
+          <li className="pt-4 sm:hidden">
+            <ThemeToggle toLight={a11y.themeToLight} toDark={a11y.themeToDark} variant="labeled" />
+          </li>
+          <li className="pt-3 pb-2">
             <a href={profile.resume} target="_blank" rel="noopener noreferrer" className="btn btn-ink w-full">
               {nav.resume} · PDF
               <ArrowUpRight size={15} />

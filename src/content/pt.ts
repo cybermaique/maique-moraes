@@ -33,7 +33,11 @@ export const pt: Dictionary = {
     ctaWork: "Ver trabalhos",
     ctaResume: "Baixar currículo",
     availability: "Aberto a vagas remotas internacionais",
-    location: "João Pessoa, Brasil · UTC−3",
+    facts: {
+      now: { label: "Agora", value: "Desenvolvedor Full Stack Sênior na Stratesys" },
+      before: { label: "Antes", value: "Grupo Inlog · Unicred · uFLY" },
+      based: { label: "Base", value: "João Pessoa, Brasil" },
+    },
     figure: "Fig. 01 — Onde atuo em um produto",
     figureHint: "Escolha uma camada",
     layers: [
@@ -438,6 +442,12 @@ export const pt: Dictionary = {
     resume: "Currículo · PDF (inglês)",
     backToTop: "Voltar ao topo",
     footer: "Projetado e desenvolvido com Next.js.",
+    viewSource: "Ver o código",
+    timeDiff: {
+      ahead: "Agora são {time} em João Pessoa — {diff} à sua frente.",
+      behind: "Agora são {time} em João Pessoa — {diff} atrás de você.",
+      same: "Agora são {time} em João Pessoa — o mesmo horário que o seu.",
+    },
   },
   caseStudy: {
     back: "Todos os trabalhos",

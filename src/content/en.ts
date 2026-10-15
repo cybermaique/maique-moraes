@@ -33,7 +33,11 @@ export const en: Dictionary = {
     ctaWork: "See selected work",
     ctaResume: "Download resume",
     availability: "Open to international remote roles",
-    location: "João Pessoa, Brazil · UTC−3",
+    facts: {
+      now: { label: "Now", value: "Senior Full Stack Developer at Stratesys" },
+      before: { label: "Before", value: "Grupo Inlog · Unicred · uFLY" },
+      based: { label: "Based", value: "João Pessoa, Brazil" },
+    },
     figure: "Fig. 01 — Where I work in a product",
     figureHint: "Select a layer",
     layers: [
@@ -438,6 +442,12 @@ export const en: Dictionary = {
     resume: "Resume · PDF",
     backToTop: "Back to top",
     footer: "Designed and built with Next.js.",
+    viewSource: "View source",
+    timeDiff: {
+      ahead: "It’s {time} in João Pessoa — {diff} ahead of you.",
+      behind: "It’s {time} in João Pessoa — {diff} behind you.",
+      same: "It’s {time} in João Pessoa — the same time as you.",
+    },
   },
   caseStudy: {
     back: "All work",

@@ -1,9 +1,10 @@
 import type { CSSProperties } from "react";
-import { profile, type Dictionary } from "@/content";
+import { profile, type Dictionary, type Locale } from "@/content";
+import { LocalClock } from "@/components/ui/local-time";
 import { ArrowDown, ArrowRight, ArrowUpRight } from "@/components/ui/icons";
 import { SystemDiagram } from "./system-diagram";
 
-export function Hero({ t }: { t: Dictionary }) {
+export function Hero({ t, locale }: { t: Dictionary; locale: Locale }) {
   const { hero } = t;
   return (
     <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
@@ -47,7 +48,23 @@ export function Hero({ t }: { t: Dictionary }) {
                 <span className="sr-only">(PDF)</span>
               </a>
             </div>
-            <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-3 border-t border-line pt-6 text-[0.9375rem]">
+            <dl className="mt-10 grid gap-2.5 border-t border-line pt-6 text-[0.9375rem]">
+              {[hero.facts.now, hero.facts.before].map((fact) => (
+                <div key={fact.label} className="grid grid-cols-[4.5rem_1fr] items-baseline gap-3">
+                  <dt className="mono-label text-muted">{fact.label}</dt>
+                  <dd className="text-ink-2">{fact.value}</dd>
+                </div>
+              ))}
+              <div className="grid grid-cols-[4.5rem_1fr] items-baseline gap-3">
+                <dt className="mono-label text-muted">{hero.facts.based.label}</dt>
+                <dd className="text-ink-2">
+                  {hero.facts.based.value}
+                  <LocalClock locale={locale} timeZone={profile.timeZone} prefix=" · " />
+                  <span className="text-muted"> (UTC−3)</span>
+                </dd>
+              </div>
+            </dl>
+            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-[0.9375rem]">
               <li>
                 <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="link-arrow link-draw inline-flex items-center gap-1.5">
                   LinkedIn
@@ -68,7 +85,6 @@ export function Hero({ t }: { t: Dictionary }) {
                 </a>
               </li>
             </ul>
-            <p className="mono-label mt-6 text-muted">{hero.location}</p>
           </div>
           <div className="rise lg:col-span-7" style={{ "--i": 4 } as CSSProperties}>
             <SystemDiagram figure={hero.figure} hint={hero.figureHint} layers={hero.layers} />

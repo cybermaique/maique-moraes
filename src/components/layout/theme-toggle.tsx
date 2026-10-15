@@ -12,7 +12,14 @@ function subscribe(onChange: () => void) {
 
 const readTheme = (): Theme => (document.documentElement.dataset.theme === "light" ? "light" : "dark");
 
-export function ThemeToggle({ toLight, toDark }: { toLight: string; toDark: string }) {
+interface ThemeToggleProps {
+  toLight: string;
+  toDark: string;
+  /** "icon" for the header; "labeled" shows the action as text (mobile menu). */
+  variant?: "icon" | "labeled";
+}
+
+export function ThemeToggle({ toLight, toDark, variant = "icon" }: ThemeToggleProps) {
   const theme = useSyncExternalStore(subscribe, readTheme, () => defaultTheme);
   const next: Theme = theme === "dark" ? "light" : "dark";
 
@@ -43,15 +50,27 @@ export function ThemeToggle({ toLight, toDark }: { toLight: string; toDark: stri
     window.setTimeout(() => root.classList.remove("theme-transition"), 400);
   }
 
+  const label = next === "light" ? toLight : toDark;
+  const icon = theme === "dark" ? <SunIcon size={18} /> : <MoonIcon size={18} />;
+
+  if (variant === "labeled") {
+    return (
+      <button type="button" onClick={toggle} className="btn btn-line w-full">
+        {icon}
+        {label}
+      </button>
+    );
+  }
+
   return (
     <button
       type="button"
       onClick={toggle}
-      aria-label={next === "light" ? toLight : toDark}
-      title={next === "light" ? toLight : toDark}
+      aria-label={label}
+      title={label}
       className="flex size-10 items-center justify-center rounded-full text-ink-2 transition-colors hover:bg-paper-2 hover:text-ink"
     >
-      {theme === "dark" ? <SunIcon size={18} /> : <MoonIcon size={18} />}
+      {icon}
     </button>
   );
 }

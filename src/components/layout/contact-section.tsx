@@ -1,9 +1,10 @@
-import { profile, type Dictionary } from "@/content";
-import { ArrowDown, ArrowUp, ArrowUpRight } from "@/components/ui/icons";
+import { profile, type Dictionary, type Locale } from "@/content";
+import { TimeDifference } from "@/components/ui/local-time";
+import { ArrowDown, ArrowUp, ArrowUpRight, GitHubMark } from "@/components/ui/icons";
 import { CopyEmail } from "./copy-email";
 
 /** Closing call to action, shared by every page. */
-export function ContactSection({ t }: { t: Dictionary }) {
+export function ContactSection({ t, locale }: { t: Dictionary; locale: Locale }) {
   const { contact, a11y } = t;
   const external = [
     { label: "LinkedIn", href: profile.linkedin, meta: "/in/maique-moraes" },
@@ -22,6 +23,13 @@ export function ContactSection({ t }: { t: Dictionary }) {
           <div className="lg:col-span-6">
             <p className="max-w-xl text-lg leading-relaxed text-fog md:text-xl">{contact.body}</p>
             <p className="mt-5 max-w-xl text-[0.9375rem] leading-relaxed text-fog/80">{contact.hours}</p>
+            <TimeDifference
+              locale={locale}
+              timeZone={profile.timeZone}
+              utcOffsetMinutes={profile.utcOffsetMinutes}
+              templates={contact.timeDiff}
+              className="mt-8 flex items-center gap-2.5 font-mono text-[0.8125rem] text-fog"
+            />
           </div>
 
           <div className="lg:col-span-6">
@@ -84,10 +92,22 @@ export function SiteFooter({ t }: { t: Dictionary }) {
           <p>
             © {new Date().getFullYear()} {profile.name}. {t.contact.footer}
           </p>
-          <a href="#top" className="inline-flex items-center gap-2 transition-colors hover:text-snow">
-            {t.contact.backToTop}
-            <ArrowUp size={15} />
-          </a>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <a
+              href={profile.sourceCode}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 transition-colors hover:text-snow"
+            >
+              <GitHubMark size={15} />
+              {t.contact.viewSource}
+              <span className="sr-only">({t.a11y.newTab})</span>
+            </a>
+            <a href="#top" className="inline-flex items-center gap-2 transition-colors hover:text-snow">
+              {t.contact.backToTop}
+              <ArrowUp size={15} />
+            </a>
+          </div>
         </div>
       </div>
     </footer>

@@ -31,6 +31,30 @@ test.describe("homepage", () => {
     await expect(contact.getByRole("link", { name: /GitHub/ })).toHaveAttribute("href", profile.github);
   });
 
+  test("states the current role and live local time", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByText(en.hero.facts.now.value)).toBeVisible();
+    const based = page.locator("dd", { hasText: en.hero.facts.based.value });
+    await expect(based.locator("time")).toHaveText(/\d{1,2}:\d{2}/);
+  });
+
+  test("tells visitors the time difference from their own zone", async ({ browser }) => {
+    const context = await browser.newContext({ timezoneId: "America/New_York" });
+    const page = await context.newPage();
+    await page.goto("/");
+    // João Pessoa is UTC−3 all year; New York is UTC−4 or UTC−5 depending on the season.
+    await expect(page.locator("#contact")).toContainText(/It’s .+ in João Pessoa — (1|2) h ahead of you\./);
+    await context.close();
+  });
+
+  test("links to the site's public source code", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.locator("footer").getByRole("link", { name: new RegExp(en.contact.viewSource) })).toHaveAttribute(
+      "href",
+      profile.sourceCode,
+    );
+  });
+
   test("serves the resume PDF", async ({ request }) => {
     const response = await request.get(profile.resume);
     expect(response.status()).toBe(200);
@@ -75,15 +99,21 @@ test.describe("homepage", () => {
     await expect(html).toHaveAttribute("data-theme", "dark");
   });
 
-  test("switches theme and remembers the choice", async ({ page }) => {
+  test("switches theme and remembers the choice", async ({ page, isMobile }) => {
+    // On small screens the toggle lives in the menu.
+    const openMenuIfNeeded = async () => {
+      if (isMobile) await page.getByRole("button", { name: en.a11y.openMenu }).click();
+    };
     await page.emulateMedia({ colorScheme: "dark" });
     await page.goto("/");
     const html = page.locator("html");
     await expect(html).toHaveAttribute("data-theme", "dark");
+    await openMenuIfNeeded();
     await page.getByRole("button", { name: en.a11y.themeToLight }).click();
     await expect(html).toHaveAttribute("data-theme", "light");
     await page.reload();
     await expect(html).toHaveAttribute("data-theme", "light");
+    await openMenuIfNeeded();
     await expect(page.getByRole("button", { name: en.a11y.themeToDark })).toBeVisible();
   });
 

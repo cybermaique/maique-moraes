@@ -412,3 +412,144 @@
     }
   }
 }
+
+/* ─── Fig. 01 · System diagram ─────────────────────────────── */
+.system-band {
+  display: block;
+  width: 100%;
+  padding: 1rem 1.1rem 1.1rem;
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+  background: rgb(243 241 234 / 0.6);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.35s var(--ease-out-expo),
+    background-color 0.35s var(--ease-out-expo),
+    box-shadow 0.35s var(--ease-out-expo);
+}
+.system-band:hover {
+  border-color: var(--color-line-strong);
+}
+.system-band[aria-pressed="true"] {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+  box-shadow: 0 0 0 4px rgb(43 60 220 / 0.08);
+}
+.system-index {
+  color: var(--color-muted);
+  transition: color 0.35s;
+}
+.system-band[aria-pressed="true"] .system-index {
+  color: var(--color-accent);
+}
+
+.system-node {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.25rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 999px;
+  background: var(--color-paper);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--color-ink-2);
+  transition:
+    border-color 0.35s var(--ease-out-expo),
+    color 0.35s var(--ease-out-expo);
+}
+.system-band[aria-pressed="true"] .system-node {
+  border-color: rgb(43 60 220 / 0.55);
+  color: var(--color-accent-deep);
+}
+
+/* Connectors share the node grid so lines meet node centres. */
+.system-link {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  height: 2.25rem;
+  padding-inline: 1.1rem;
+}
+.system-link > span {
+  position: relative;
+  justify-self: center;
+  width: 1px;
+  height: 100%;
+  background-image: linear-gradient(var(--color-line-strong) 50%, transparent 50%);
+  background-size: 1px 6px;
+}
+.system-link em {
+  position: absolute;
+  top: 50%;
+  right: 0.6rem;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-style: normal;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+.system-link-down::after,
+.system-link-up::after {
+  content: "";
+  position: absolute;
+  left: -2.5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  opacity: 0;
+}
+.system-link-down::after {
+  top: 0;
+}
+.system-link-up::after {
+  bottom: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .system-link-down::after {
+    animation: pulse-down 2.4s var(--ease-out-expo) 4;
+    animation-delay: var(--d, 0s);
+  }
+  .system-link-up::after {
+    animation: pulse-up 2.4s var(--ease-out-expo) 4;
+    animation-delay: calc(var(--d, 0s) + 1.2s);
+  }
+  @keyframes pulse-down {
+    0% {
+      opacity: 0;
+      transform: translateY(0);
+    }
+    15% {
+      opacity: 1;
+    }
+    60%,
+    100% {
+      opacity: 0;
+      transform: translateY(2.25rem);
+    }
+  }
+  @keyframes pulse-up {
+    0% {
+      opacity: 0;
+      transform: translateY(0);
+    }
+    15% {
+      opacity: 1;
+    }
+    60%,
+    100% {
+      opacity: 0;
+      transform: translateY(-2.25rem);
+    }
+  }
+}

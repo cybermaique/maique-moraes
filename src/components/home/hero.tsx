@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { profile, type Dictionary } from "@/content";
-import { ArrowDown, ArrowRight } from "@/components/ui/icons";
+import { ArrowDown, ArrowRight, ArrowUpRight } from "@/components/ui/icons";
+import { SystemDiagram } from "./system-diagram";
 
 export function Hero({ t }: { t: Dictionary }) {
   const { hero } = t;
@@ -46,7 +47,31 @@ export function Hero({ t }: { t: Dictionary }) {
                 <span className="sr-only">(PDF)</span>
               </a>
             </div>
-            <p className="mono-label mt-8 text-muted">{hero.location}</p>
+            <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-3 border-t border-line pt-6 text-[0.9375rem]">
+              <li>
+                <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="link-arrow link-draw inline-flex items-center gap-1.5">
+                  LinkedIn
+                  <ArrowUpRight size={15} />
+                  <span className="sr-only">({t.a11y.newTab})</span>
+                </a>
+              </li>
+              <li>
+                <a href={profile.github} target="_blank" rel="noopener noreferrer" className="link-arrow link-draw inline-flex items-center gap-1.5">
+                  GitHub
+                  <ArrowUpRight size={15} />
+                  <span className="sr-only">({t.a11y.newTab})</span>
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${profile.email}`} className="link-draw">
+                  {profile.email}
+                </a>
+              </li>
+            </ul>
+            <p className="mono-label mt-6 text-muted">{hero.location}</p>
+          </div>
+          <div className="rise lg:col-span-7" style={{ "--i": 4 } as CSSProperties}>
+            <SystemDiagram figure={hero.figure} hint={hero.figureHint} layers={hero.layers} />
           </div>
         </div>
       </div>

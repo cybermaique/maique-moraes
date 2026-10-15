@@ -1,6 +1,7 @@
 import { getDictionary, homePath, type Locale } from "@/content";
 import { SiteHeader } from "@/components/layout/site-header";
 import { Hero } from "./hero";
+import { ProofStrip } from "./proof-strip";
 
 export function HomePage({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
@@ -17,6 +18,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       />
       <main id="main">
         <Hero t={t} />
+        <ProofStrip proof={t.proof} />
       </main>
     </>
   );

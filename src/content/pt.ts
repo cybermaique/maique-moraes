@@ -435,7 +435,7 @@ export const pt: Dictionary = {
     copyFailed: "Não foi possível copiar — selecione o endereço",
     resume: "Currículo · PDF (inglês)",
     backToTop: "Voltar ao topo",
-    footer: "Projetado e desenvolvido por Maique Moraes com Next.js.",
+    footer: "Projetado e desenvolvido com Next.js.",
   },
   caseStudy: {
     back: "Todos os trabalhos",

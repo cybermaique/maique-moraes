@@ -14,7 +14,7 @@ export function WorkSection({ t, locale }: { t: Dictionary; locale: Locale }) {
           {t.cases.map((study) => (
             <li key={study.slug} className="reveal">
               <article className="work-card group relative grid overflow-hidden rounded-[1.25rem] border border-night-line bg-night-2 lg:grid-cols-12">
-                <div className="work-card-art relative border-b border-night-line text-snow lg:col-span-5 lg:border-r lg:border-b-0">
+                <div className="work-card-art relative flex items-center border-b border-night-line text-snow lg:col-span-5 lg:border-r lg:border-b-0">
                   <span className="mono-label absolute top-5 left-5 text-fog">{study.index}</span>
                   <CaseArt kind={study.diagram.kind} />
                 </div>

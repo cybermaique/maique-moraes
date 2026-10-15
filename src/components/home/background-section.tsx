@@ -3,7 +3,7 @@ import type { Dictionary } from "@/content";
 export function ToolkitSection({ t }: { t: Dictionary }) {
   const { toolkit } = t;
   return (
-    <section aria-labelledby="toolkit-title" className="border-t border-line py-24 md:py-32">
+    <section aria-labelledby="toolkit-title" className="border-t border-line pt-24 pb-16 md:pt-32 md:pb-20">
       <div className="shell">
         <p className="eyebrow">{toolkit.label}</p>
         <h2 id="toolkit-title" className="display-lg mt-5">
@@ -34,7 +34,7 @@ export function BackgroundSection({ t }: { t: Dictionary }) {
   return (
     <section aria-labelledby="background-title" className="pb-24 md:pb-32">
       <div className="shell">
-        <div className="grid gap-14 border-t border-line pt-24 md:pt-32 lg:grid-cols-12 lg:gap-16">
+        <div className="grid gap-14 border-t border-line pt-16 md:pt-20 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <p className="eyebrow">{background.label}</p>
             <h2 id="background-title" className="display-lg mt-5">

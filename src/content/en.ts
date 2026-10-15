@@ -435,7 +435,7 @@ export const en: Dictionary = {
     copyFailed: "Couldn’t copy — please select the address instead",
     resume: "Résumé · PDF",
     backToTop: "Back to top",
-    footer: "Designed and built by Maique Moraes with Next.js.",
+    footer: "Designed and built with Next.js.",
   },
   caseStudy: {
     back: "All work",

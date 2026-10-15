@@ -82,7 +82,7 @@ export function CaseStudyPage({ locale, study }: { locale: Locale; study: CaseSt
 
           <section aria-labelledby="decision-title" className="on-night bg-night py-20 text-snow md:py-28">
             <div className="shell grid gap-8 lg:grid-cols-12 lg:gap-16">
-              <p className="eyebrow lg:col-span-3">03 · {labels.decision}</p>
+              <p className="eyebrow self-start lg:col-span-3 lg:pt-5">03 · {labels.decision}</p>
               <div className="lg:col-span-9">
                 <h2 id="decision-title" className="display-lg max-w-[22ch]">
                   {study.decision.title}

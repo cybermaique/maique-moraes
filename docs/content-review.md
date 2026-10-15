@@ -20,12 +20,13 @@ Private source files are not committed to this repository.
 | "View source" link | Public GitHub repository | Points to this site's own public repository. |
 | Note on private repositories | Owner statement, 15 October 2026 | Most production work is in private company repositories; stated once, in the contact section. |
 | "6+ years" | Base §5 | Development starts August 2020; earlier support work excluded. |
-| "4 industries" | LinkedIn About | Procurement, logistics, financial services, healthcare. |
+| "6 industries" | LinkedIn About; base §5; owner statement, 15 October 2026 | Procurement, logistics, financial services, healthcare, public sector (official documents, Autonomo), vehicle telemetry (Creare). |
 | "2 AI assistants" | INL-01, STR-01–03 | Logistics and procurement assistants integrated into products. |
-| "6–8 developers supported" | UNI-02 | Technical support, not direct reports. |
+| "15+ people mentored or trained" | UNI-02; owner statement, 15 October 2026 | 6–8 developers mentored at Unicred plus about ten non-developer colleagues trained at Creare. Not direct reports. |
 | Case 01 — bid comparison | STR-04, STR-05 | Personal BFF ownership; award API authorship explicitly not claimed. |
 | Case 02 — AI assistants | INL-01, INL-02, STR-02, STR-03 | Shared extraction/indexing on the procurement side is disclosed. |
 | Case 03 — financial platform | UNI-01, UNI-02 | 95% is a CI requirement for the tested scope, not a personal result. |
+| Who used each product (experience entries) | Owner statement, 15 October 2026 | Described by type only — large companies, public services in several states, a nationwide financial cooperative, one of Brazil's largest hospitals, state transit departments, multinational agribusiness companies. No client names (base v2.1 §17.4). |
 | Multi-product shell (experience entry) | STR-01 | Described as a capability only; no topology, transport, or infrastructure details. |
 | ~15% customer growth (Inlog entry) | Resume, LinkedIn, base §14.1 | Presented, as on LinkedIn, as a shared engineering/product/commercial outcome. |
 | Principles | STR-04, INL-01, UNI-01, EP-05, UNI-02 | Each tied to a described piece of work. |

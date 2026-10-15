@@ -67,9 +67,9 @@ export const pt: Dictionary = {
     label: "Em resumo",
     items: [
       { value: "6+", label: "anos entregando software em produção" },
-      { value: "4", label: "setores: compras, logística, finanças e saúde" },
+      { value: "6", label: "setores: compras, logística, finanças, saúde, setor público e telemetria" },
       { value: "2", label: "assistentes de IA integrados a plataformas de negócio" },
-      { value: "6–8", label: "desenvolvedores apoiados com revisões e treinamentos" },
+      { value: "15+", label: "pessoas mentoradas ou treinadas nos times" },
     ],
   },
   work: {
@@ -252,7 +252,7 @@ export const pt: Dictionary = {
         role: "Desenvolvedor Full Stack Sênior",
         period: "Jan 2026 — Atual",
         start: "2026-01",
-        domain: "Compras corporativas e strategic sourcing · IntelligentBuy",
+        domain: "Compras corporativas e strategic sourcing para grandes empresas · IntelligentBuy",
         highlights: [
           "Desenvolvo fluxos de compras em React e Next.js: processos de compra, negociações com fornecedores, quadro comparativo e cenários de premiação.",
           "Sou responsável por um BFF em NestJS para o quadro comparativo, com validação de acesso, falhas controladas, logs estruturados e correlation IDs.",
@@ -267,7 +267,7 @@ export const pt: Dictionary = {
         period: "Dez 2024 — Jan 2026",
         start: "2024-12",
         end: "2026-01",
-        domain: "Gestão de coleta de resíduos · motoristas, frota e rotas",
+        domain: "Gestão de coleta de resíduos usada por empresas e serviços públicos em vários estados · motoristas, frota e rotas",
         highlights: [
           "Desenvolvi um assistente de IA com GPT-4o, LangChain.js, PostgreSQL/pgvector e ferramentas MCP, com respostas via SSE.",
           "Entreguei funcionalidades full stack e APIs REST para motoristas, frota, setores de coleta e rotas, incluindo interfaces com mapas em Leaflet.",
@@ -282,7 +282,7 @@ export const pt: Dictionary = {
         period: "Nov 2022 — Dez 2024",
         start: "2022-11",
         end: "2024-12",
-        domain: "Aplicações digitais de uma cooperativa financeira",
+        domain: "Aplicações digitais de uma cooperativa financeira com atuação nacional",
         highlights: [
           "Desenvolvi funcionalidades web e BFFs em NestJS conectados a APIs de serviços financeiros.",
           "Migrei funcionalidades React para microfrontends com single-spa, com mínimo de 95% de cobertura de linhas exigido pelo CI.",
@@ -298,7 +298,7 @@ export const pt: Dictionary = {
         period: "Jun 2022 — Nov 2022",
         start: "2022-06",
         end: "2022-11",
-        domain: "Software de alocação na saúde",
+        domain: "Software de alocação na saúde feito para um dos maiores hospitais do Brasil",
         highlights: [
           "Desenvolvi interfaces responsivas para fluxos hospitalares, integrei APIs, investiguei defeitos em produção e apresentei o andamento das entregas a clientes.",
         ],
@@ -309,7 +309,7 @@ export const pt: Dictionary = {
         period: "Jan 2021 — Jun 2022",
         start: "2021-01",
         end: "2022-06",
-        domain: "Emissão de documentação oficial",
+        domain: "Emissão e validação de documentos oficiais — CNH e PID — usadas por Detrans de vários estados",
         highlights: [
           "Desenvolvi funcionalidades com React, Vue.js, TypeScript, Node.js e NestJS; refatorei para facilitar a manutenção, com testes unitários, SonarQube e code reviews.",
         ],
@@ -320,9 +320,9 @@ export const pt: Dictionary = {
         period: "Ago 2020 — Jan 2021",
         start: "2020-08",
         end: "2021-01",
-        domain: "Telemetria veicular",
+        domain: "Telemetria veicular para multinacionais do agronegócio",
         highlights: [
-          "Onde tudo começou: investiguei problemas de telemetria com Oracle SQL, JavaScript e JSON, escrevi documentação de treinamento e ajudei a integrar novos estagiários.",
+          "Onde tudo começou: investiguei problemas de telemetria com Oracle SQL, JavaScript e JSON, escrevi documentação de treinamento e treinei novos estagiários e uma equipe de cerca de dez colegas não desenvolvedores.",
         ],
       },
     ],

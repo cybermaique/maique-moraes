@@ -67,9 +67,9 @@ export const en: Dictionary = {
     label: "At a glance",
     items: [
       { value: "6+", label: "years shipping production software" },
-      { value: "4", label: "industries: procurement, logistics, finance, healthcare" },
+      { value: "6", label: "industries: procurement, logistics, finance, healthcare, public sector, telemetry" },
       { value: "2", label: "AI assistants integrated into business platforms" },
-      { value: "6–8", label: "developers supported through reviews and training" },
+      { value: "15+", label: "people mentored or trained across teams" },
     ],
   },
   work: {
@@ -252,7 +252,7 @@ export const en: Dictionary = {
         role: "Senior Full Stack Developer",
         period: "Jan 2026 — Present",
         start: "2026-01",
-        domain: "Enterprise procurement and strategic sourcing · IntelligentBuy",
+        domain: "Enterprise procurement and strategic sourcing for large companies · IntelligentBuy",
         highlights: [
           "Build procurement workflows in React and Next.js: purchasing processes, supplier negotiations, bid comparison, and award scenarios.",
           "Own a NestJS backend-for-frontend for bid comparison, with access validation, controlled failures, structured logs, and correlation IDs.",
@@ -267,7 +267,7 @@ export const en: Dictionary = {
         period: "Dec 2024 — Jan 2026",
         start: "2024-12",
         end: "2026-01",
-        domain: "Waste-collection management · drivers, fleet, and routes",
+        domain: "Waste-collection management used by companies and public services in several Brazilian states · drivers, fleet, and routes",
         highlights: [
           "Built an AI assistant with GPT-4o, LangChain.js, PostgreSQL/pgvector, and MCP tools, streaming responses over SSE.",
           "Delivered full stack features and REST APIs for drivers, fleet, collection sectors, and routes, including Leaflet map interfaces.",
@@ -282,7 +282,7 @@ export const en: Dictionary = {
         period: "Nov 2022 — Dec 2024",
         start: "2022-11",
         end: "2024-12",
-        domain: "Digital applications for a financial cooperative",
+        domain: "Digital applications for a nationwide financial cooperative",
         highlights: [
           "Built web features and NestJS backends-for-frontend connected to financial-services APIs.",
           "Migrated React features to single-spa microfrontends under a CI-enforced 95% line-coverage minimum.",
@@ -298,7 +298,7 @@ export const en: Dictionary = {
         period: "Jun 2022 — Nov 2022",
         start: "2022-06",
         end: "2022-11",
-        domain: "Healthcare allocation software",
+        domain: "Healthcare allocation software built for one of Brazil’s largest hospitals",
         highlights: [
           "Built responsive interfaces for hospital workflows, integrated APIs, investigated production defects, and presented delivery progress to clients.",
         ],
@@ -309,7 +309,7 @@ export const en: Dictionary = {
         period: "Jan 2021 — Jun 2022",
         start: "2021-01",
         end: "2022-06",
-        domain: "Official document issuance",
+        domain: "Issuance and validation of official documents — driver’s licenses and international driving permits — used by state transit departments",
         highlights: [
           "Developed features with React, Vue.js, TypeScript, Node.js, and NestJS; refactored for maintainability, with unit tests, SonarQube, and code reviews.",
         ],
@@ -320,9 +320,9 @@ export const en: Dictionary = {
         period: "Aug 2020 — Jan 2021",
         start: "2020-08",
         end: "2021-01",
-        domain: "Vehicle telemetry",
+        domain: "Vehicle telemetry for multinational agribusiness companies",
         highlights: [
-          "Where it started: investigated telemetry issues with Oracle SQL, JavaScript, and JSON, wrote training documentation, and helped onboard new interns.",
+          "Where it started: investigated telemetry issues with Oracle SQL, JavaScript, and JSON, wrote training documentation, and trained new interns and a team of about ten non-developer colleagues.",
         ],
       },
     ],

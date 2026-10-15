@@ -11,16 +11,21 @@ interface EntranceScreenProps {
   enterLabel: string;
 }
 
-/** Matches the longest exit animation in globals.css (the curtain lift). */
-const exitDurationMs = 750;
+/** Exit length in globals.css: portal (0.15 s delay + 0.85 s), or a 0.45 s fade with reduced motion. */
+const exitDurationMs = 1000;
+const reducedExitDurationMs = 450;
+/** The portal has uncovered the screen well before its animation ends; the page's opening starts then. */
+const releaseMs = 560;
+const reducedReleaseMs = 350;
 
 /**
  * Full-screen entrance shown when a visitor arrives or reloads (decided before first paint
  * by lib/intro.ts, which sets `html[data-splash="show"]`). It enters by itself when the
- * button's progress bar fills (≈2 s), or immediately on any click or key press, then
- * lifts like a curtain while the page's opening sequence starts.
+ * button's progress bar fills (≈2 s), or immediately on any click or key press. On exit the
+ * signal dot opens into a portal that reveals the site, whose own opening then plays.
  */
 export function EntranceScreen({ name, role, place, enter, enterLabel }: EntranceScreenProps) {
+  const screenRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLSpanElement>(null);
   const enterRef = useRef<() => void>(() => {});
 
@@ -35,10 +40,24 @@ export function EntranceScreen({ name, role, place, enter, enterLabel }: Entranc
       if (entered) return;
       entered = true;
       listeners.abort();
+
+      // The portal opens from the signal dot, wherever the layout placed it.
+      const screen = screenRef.current;
+      const dot = screen?.querySelector(".entrance-dot")?.getBoundingClientRect();
+      if (screen && dot) {
+        screen.style.setProperty("--portal-x", `${dot.left + dot.width / 2}px`);
+        screen.style.setProperty("--portal-y", `${dot.top + dot.height / 2}px`);
+      }
+
+      // The page's opening is armed now but stays frozen (data-opening, see globals.css)
+      // until the portal has uncovered the screen, so it plays in full view.
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const release = reduced ? reducedReleaseMs : releaseMs;
       root.dataset.splash = "leaving";
       root.dataset.intro = "play";
-      window.setTimeout(() => delete root.dataset.intro, introDurationMs);
-      window.setTimeout(() => delete root.dataset.splash, exitDurationMs);
+      window.setTimeout(() => delete root.dataset.opening, release);
+      window.setTimeout(() => delete root.dataset.splash, reduced ? reducedExitDurationMs : exitDurationMs);
+      window.setTimeout(() => delete root.dataset.intro, release + introDurationMs);
     };
     enterRef.current = enterSite;
 
@@ -62,7 +81,7 @@ export function EntranceScreen({ name, role, place, enter, enterLabel }: Entranc
   }, []);
 
   return (
-    <div className="entrance" onClick={() => enterRef.current()}>
+    <div ref={screenRef} className="entrance" onClick={() => enterRef.current()}>
       <div aria-hidden="true" className="entrance-grid" />
       <div className="entrance-inner">
         <div className="entrance-glow" aria-hidden="true" />

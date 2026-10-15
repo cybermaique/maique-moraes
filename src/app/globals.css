@@ -448,7 +448,7 @@ html.theme-transition * {
 /* ─── Motion ───────────────────────────────────────────────── */
 @media (prefers-reduced-motion: no-preference) {
   /*
-   * Entrance for above-the-fold text: movement only, never opacity, so the
+   * Entrance for above-the-fold text: movement and a focus pull, never opacity, so the
    * text is painted in the first frame and Largest Contentful Paint is not delayed.
    */
   .rise {
@@ -458,10 +458,12 @@ html.theme-transition * {
 
   @keyframes rise {
     from {
-      transform: translateY(0.35em);
+      transform: translateY(0.4em);
+      filter: blur(10px);
     }
     to {
       transform: none;
+      filter: none;
     }
   }
 
@@ -1094,10 +1096,17 @@ html.theme-transition * {
   }
 }
 
+/* Radius of the exit portal; registered so the mask can animate. */
+@property --portal {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
 /* ─── Entrance screen ──────────────────────────────────────────
    Shown when a visitor arrives or reloads (html[data-splash], set
    before first paint by lib/intro.ts). Enters by itself in ≈2 s, or
-   on any click or key; then lifts like a curtain.
+   on any click or key; then the signal dot opens into a portal.
    ───────────────────────────────────────────────────────────── */
 .entrance {
   display: none;
@@ -1261,12 +1270,33 @@ html[data-splash] .entrance-progress {
     animation: entrance-rise 0.7s var(--ease-out-expo) 0.55s both;
   }
 
-  /* Exit: the screen lifts like a curtain while its content drifts up and fades. */
+  /*
+   * Exit: the text and the tile dissolve, the signal dot swells, and a portal opens
+   * from it until the whole site shows through (origin set by EntranceScreen).
+   */
   html[data-splash="leaving"] .entrance {
-    animation: entrance-lift 0.75s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+    -webkit-mask-image: radial-gradient(
+      circle at var(--portal-x, 50%) var(--portal-y, 45%),
+      transparent var(--portal),
+      #000 calc(var(--portal) + 1.75rem)
+    );
+    mask-image: radial-gradient(
+      circle at var(--portal-x, 50%) var(--portal-y, 45%),
+      transparent var(--portal),
+      #000 calc(var(--portal) + 1.75rem)
+    );
+    animation: entrance-portal 0.85s cubic-bezier(0.7, 0, 0.25, 1) 0.15s both;
   }
-  html[data-splash="leaving"] .entrance-inner {
-    animation: entrance-out 0.35s ease forwards;
+  html[data-splash="leaving"] .entrance-name,
+  html[data-splash="leaving"] .entrance-role,
+  html[data-splash="leaving"] .entrance-enter,
+  html[data-splash="leaving"] .entrance-glow,
+  html[data-splash="leaving"] .entrance-grid,
+  html[data-splash="leaving"] .entrance-emblem > :not(.entrance-dot) {
+    animation: entrance-vanish 0.25s ease forwards;
+  }
+  html[data-splash="leaving"] .entrance-dot {
+    animation: entrance-seed 0.35s var(--ease-out-expo) forwards;
   }
 
   @keyframes entrance-emblem {
@@ -1315,15 +1345,22 @@ html[data-splash] .entrance-progress {
       transform: none;
     }
   }
-  @keyframes entrance-lift {
+  @keyframes entrance-portal {
+    from {
+      --portal: 0px;
+    }
     to {
-      transform: translateY(-100%);
+      --portal: 150vmax;
     }
   }
-  @keyframes entrance-out {
+  @keyframes entrance-vanish {
     to {
       opacity: 0;
-      transform: translateY(-1.5rem);
+    }
+  }
+  @keyframes entrance-seed {
+    to {
+      transform: scale(1.7);
     }
   }
 }
@@ -1382,4 +1419,22 @@ html[data-splash] .entrance-progress {
   .entrance {
     display: none !important;
   }
+}
+
+/* ─── Opening after the entrance screen ────────────────────────
+   While the entrance screen is up, every opening effect of the page stays
+   frozen in its first frame (html[data-opening="hold"]); it plays as soon
+   as the exit portal has uncovered the screen, so visitors see it happen.
+   Kept last so it wins over the equally specific rules above.
+   ───────────────────────────────────────────────────────────── */
+html[data-opening="hold"] .rise,
+html[data-opening="hold"] .rise-fade,
+html[data-opening="hold"] .blueprint,
+html[data-opening="hold"] .monogram-stroke,
+html[data-opening="hold"] .monogram-dot,
+html[data-opening="hold"] .system-band,
+html[data-opening="hold"] .system-link,
+html[data-opening="hold"] .system-link-down::after,
+html[data-opening="hold"] .system-link-up::after {
+  animation-play-state: paused;
 }

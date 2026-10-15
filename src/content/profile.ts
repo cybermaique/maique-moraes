@@ -10,7 +10,7 @@ export const profile = {
   github: "https://github.com/cybermaique",
   resume: "/maique-moraes-resume.pdf",
   /** This website's public repository. */
-  sourceCode: "https://github.com/cybermaique/maique-moraes",
+  sourceCode: "https://github.com/cybermaique/maique-moraes-portfolio",
   /** João Pessoa observes UTC−3 all year (no daylight saving time). */
   timeZone: "America/Fortaleza",
   utcOffsetMinutes: -180,

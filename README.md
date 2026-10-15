@@ -1,4 +1,4 @@
-# maique-moraes
+# maique-moraes-portfolio
 
 Personal website of **Maique Moraes**, Senior Full Stack Software Engineer.
 English at `/`, Portuguese at `/pt`, with case studies at `/work/<slug>` and `/pt/work/<slug>`, and articles at `/notes/<slug>` and `/pt/notes/<slug>`.

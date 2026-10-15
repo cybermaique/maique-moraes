@@ -27,7 +27,7 @@
   --color-night-line: rgb(238 236 229 / 0.12);
   --color-signal: #9aa6ff;
 
-  --color-live: #23874b;
+  --color-live: #1b6e3c;
   --color-alert: #b8400f;
   --color-alert-soft: #f6e1d6;
 
@@ -735,13 +735,20 @@
   color: var(--color-muted);
   transition:
     border-color 0.4s var(--ease-out-expo),
-    opacity 0.4s var(--ease-out-expo);
-  opacity: 0.6;
+    background-color 0.4s var(--ease-out-expo);
+}
+/* Inactive lanes recede through colour and surface, never opacity, to keep text at AA contrast. */
+.dg-lane[data-active="false"] {
+  border-style: dashed;
+  background: transparent;
+}
+.dg-lane[data-active="false"] .dg-step {
+  background: transparent;
+  border: 1px solid var(--color-line);
 }
 .dg-lane[data-active="true"] {
   border-color: var(--color-accent);
   color: var(--color-ink);
-  opacity: 1;
 }
 .dg-lane-dot {
   width: 0.5rem;

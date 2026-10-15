@@ -21,7 +21,7 @@ export const en: Dictionary = {
     experience: "Experience",
     approach: "Approach",
     contact: "Contact",
-    resume: "Résumé",
+    resume: "Resume",
   },
   hero: {
     eyebrow: "Senior Full Stack Software Engineer",
@@ -29,7 +29,7 @@ export const en: Dictionary = {
     intro:
       "I’m Maique Moraes, a full stack engineer with 6+ years building TypeScript products for enterprise procurement, logistics, financial services, and healthcare. I work end to end with React, Next.js, Node.js, and NestJS — and integrate LLMs, retrieval, and MCP tools into real business workflows.",
     ctaWork: "See selected work",
-    ctaResume: "Download résumé",
+    ctaResume: "Download resume",
     availability: "Open to international remote roles",
     location: "João Pessoa, Brazil · UTC−3",
     figure: "Fig. 01 — Where I work in a product",
@@ -433,7 +433,7 @@ export const en: Dictionary = {
     copy: "Copy address",
     copied: "Copied to clipboard",
     copyFailed: "Couldn’t copy — please select the address instead",
-    resume: "Résumé · PDF",
+    resume: "Resume · PDF",
     backToTop: "Back to top",
     footer: "Designed and built with Next.js.",
   },

@@ -47,7 +47,7 @@ src/
   lib/                 Metadata, structured data, social images, site URL
 tests/                 Playwright specs (content, flows, diagrams, axe, SEO)
 docs/                  Design direction and content provenance notes
-public/                Résumé PDF
+public/                Resume PDF
 ```
 
 Each language has its own root layout, so every page ships with the correct `<html lang>`. Both dictionaries must keep the same shape; a test enforces this.
@@ -56,7 +56,7 @@ Each language has its own root layout, so every page ships with the correct `<ht
 
 - Copy lives in `src/content/en.ts` and `src/content/pt.ts`. Write both languages naturally rather than translating literally.
 - Contact links live in `src/content/profile.ts`.
-- Replace the résumé by overwriting `public/maique-moraes-resume.pdf`.
+- Replace the resume by overwriting `public/maique-moraes-resume.pdf`.
 - `docs/content-review.md` explains which source supports each public claim. Keep personal contributions, team outcomes, and unmeasured benefits clearly separated.
 
 ## Deployment (Vercel)

@@ -13,12 +13,12 @@ The signature element is a set of **original interactive diagrams** that explain
 
 ## Recruiter journey
 
-1. *Who and what* (first screen): name, seniority, three-beat positioning, availability, résumé.
+1. *Who and what* (first screen): name, seniority, three-beat positioning, availability, resume.
 2. *Proof*: four verified numbers.
 3. *Depth*: three case studies, each with problem → contribution → decision → outcome → honest scope.
 4. *Track record*: experience timeline.
 5. *Judgment*: principles tied to real work, plus short production "field notes".
-6. *Contact*: email (mailto + copy), LinkedIn, GitHub, PDF résumé.
+6. *Contact*: email (mailto + copy), LinkedIn, GitHub, PDF resume.
 
 ## System
 

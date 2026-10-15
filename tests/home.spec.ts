@@ -31,7 +31,7 @@ test.describe("homepage", () => {
     await expect(contact.getByRole("link", { name: /GitHub/ })).toHaveAttribute("href", profile.github);
   });
 
-  test("serves the résumé PDF", async ({ request }) => {
+  test("serves the resume PDF", async ({ request }) => {
     const response = await request.get(profile.resume);
     expect(response.status()).toBe(200);
     expect(response.headers()["content-type"]).toContain("application/pdf");

@@ -1,5 +1,5 @@
 /**
- * Verified public contact details, taken from the supplied résumé and LinkedIn profile.
+ * Verified public contact details, taken from the supplied resume and LinkedIn profile.
  * Keep this the single source of truth for every outbound link on the site.
  */
 export const profile = {

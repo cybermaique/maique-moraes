@@ -35,7 +35,7 @@ test.describe("content", () => {
     expect(pt.cases.map((study) => study.slug)).toEqual(en.cases.map((study) => study.slug));
   });
 
-  test("contact details match the supplied résumé", () => {
+  test("contact details match the supplied resume", () => {
     expect(profile.email).toBe("maiqued.18@gmail.com");
     expect(profile.linkedin).toBe("https://www.linkedin.com/in/maique-moraes/");
     expect(profile.github).toBe("https://github.com/cybermaique");

@@ -51,7 +51,14 @@ export function ThemeToggle({ toLight, toDark, variant = "icon" }: ThemeTogglePr
   }
 
   const label = next === "light" ? toLight : toDark;
-  const icon = theme === "dark" ? <SunIcon size={18} /> : <MoonIcon size={18} />;
+  // Both icons render; CSS picks one from html[data-theme], so the icon is right
+  // from the first paint, before hydration knows the theme.
+  const icon = (
+    <>
+      <SunIcon size={18} className="theme-icon-sun" />
+      <MoonIcon size={18} className="theme-icon-moon" />
+    </>
+  );
 
   if (variant === "labeled") {
     return (

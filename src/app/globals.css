@@ -73,6 +73,12 @@
   --color-alert-soft: rgb(255 143 99 / 0.12);
 }
 
+/* The theme toggle shows the action: a sun in dark mode, a moon in light mode. */
+:root[data-theme="dark"] .theme-icon-moon,
+:root:not([data-theme="dark"]) .theme-icon-sun {
+  display: none;
+}
+
 /* Brief cross-fade when the visitor switches theme. */
 @media (prefers-reduced-motion: no-preference) {
   html.theme-transition,

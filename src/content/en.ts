@@ -426,7 +426,7 @@ export const en: Dictionary = {
     quote: {
       text: "Maique is one of the most qualified professionals I have worked with. What stood out most: he learns fast, has strong technical knowledge, understands business rules, and is deeply committed — often putting in extra hours to solve problems that weren’t his responsibility.",
       author: "Ricardo Oliveira",
-      context: "Managed Maique directly · LinkedIn recommendation, 2022 · translated from Portuguese",
+      context: "Managed Maique directly",
     },
   },
   contact: {

@@ -426,7 +426,7 @@ export const pt: Dictionary = {
     quote: {
       text: "Maique é um dos profissionais mais qualificados com quem eu já trabalhei. As principais características que eu notei foram: rápido aprendizado, ótimo conhecimento técnico, capacidade de entender as regras de negócio e comprometimento, muitas vezes fazendo horas extras para resolver problemas que não eram de sua responsabilidade.",
       author: "Ricardo Oliveira",
-      context: "Gestor direto · Recomendação no LinkedIn, 2022",
+      context: "Gestor direto",
     },
   },
   contact: {

@@ -114,7 +114,8 @@ export const pt: Dictionary = {
         access: "Processo e acesso",
         bff: "BFF do comparativo",
         ready: "Comparação pronta",
-        failed: "Erro controlado · Tentar de novo",
+        failed: "Erro controlado",
+        retry: "Tentar de novo",
         okCaption:
           "Todos os dados essenciais chegaram. O BFF valida o acesso, associa cada proposta ao seu fornecedor e devolve um contrato tipado para a interface.",
         failCaption:

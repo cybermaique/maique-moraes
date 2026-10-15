@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { getDictionary, type Locale } from "@/content";
+import { getCaseStudy, getDictionary, type Locale } from "@/content";
 import { getSiteUrl } from "./site-url";
 
 export const viewport: Viewport = {
@@ -15,5 +15,14 @@ export function rootMetadata(locale: Locale): Metadata {
     description: t.meta.description,
     authors: [{ name: "Maique Moraes" }],
     creator: "Maique Moraes",
+  };
+}
+
+export function caseMetadata(locale: Locale, slug: string): Metadata {
+  const study = getCaseStudy(locale, slug);
+  if (!study) return {};
+  return {
+    title: `${study.title} — Maique Moraes`,
+    description: study.summary,
   };
 }

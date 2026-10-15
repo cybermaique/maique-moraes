@@ -30,6 +30,7 @@ export interface BidDiagramCopy {
   bff: string;
   ready: string;
   failed: string;
+  retry: string;
   okCaption: string;
   failCaption: string;
 }

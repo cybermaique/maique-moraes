@@ -114,7 +114,8 @@ export const en: Dictionary = {
         access: "Process & access",
         bff: "Comparison BFF",
         ready: "Comparison ready",
-        failed: "Controlled error · Retry",
+        failed: "Controlled error",
+        retry: "Retry",
         okCaption:
           "All essential data arrived. The BFF validates access, joins each proposal with its supplier, and returns one typed contract to the interface.",
         failCaption:

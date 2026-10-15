@@ -34,7 +34,7 @@ export function renderHomeOgImage(locale: Locale) {
     lines: t.hero.headline,
     fontSize: 84,
     footer: `${t.hero.eyebrow}  ·  TypeScript · React · Next.js · Node.js · NestJS`,
-    badge: t.hero.availability,
+    badge: `${t.hero.facts.based.value} · UTC−3`,
   });
 }
 
@@ -102,7 +102,7 @@ async function renderOgImage({ lines, fontSize, footer, badge }: OgContent) {
               color: "#2d312c",
             }}
           >
-            <div style={{ width: 10, height: 10, borderRadius: 999, background: "#23874b" }} />
+            <div style={{ width: 10, height: 10, background: "#2b3cdc" }} />
             {badge}
           </div>
         </div>

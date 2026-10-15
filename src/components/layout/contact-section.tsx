@@ -77,6 +77,18 @@ export function ContactSection({ t, locale }: { t: Dictionary; locale: Locale })
                 </a>
               </li>
             </ul>
+            <p className="mt-5 max-w-md text-sm leading-relaxed text-fog">
+              {contact.codeNote.text}{" "}
+              <a
+                href={profile.sourceCode}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-snow underline decoration-night-line underline-offset-4 transition-colors hover:decoration-signal"
+              >
+                {contact.codeNote.link}
+                <span className="sr-only"> ({a11y.newTab})</span>
+              </a>
+            </p>
           </div>
         </div>
       </div>

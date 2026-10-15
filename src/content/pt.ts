@@ -4,7 +4,7 @@ export const pt: Dictionary = {
   meta: {
     title: "Maique Moraes — Engenheiro de Software Full Stack Sênior",
     description:
-      "Engenheiro full stack sênior com mais de 6 anos desenvolvendo produtos em TypeScript com React, Next.js, Node.js e NestJS — e integrando LLMs, RAG e MCP a fluxos reais de negócio. Aberto a oportunidades remotas internacionais.",
+      "Engenheiro full stack sênior com mais de 6 anos desenvolvendo produtos em TypeScript com React, Next.js, Node.js e NestJS — e integrando LLMs, RAG e MCP a fluxos reais de negócio. Em João Pessoa, Brasil (UTC−3).",
     ogAlt: "Maique Moraes, Engenheiro de Software Full Stack Sênior",
   },
   a11y: {
@@ -32,7 +32,6 @@ export const pt: Dictionary = {
       "Sou Maique Moraes, engenheiro full stack com mais de 6 anos desenvolvendo produtos em TypeScript para compras corporativas, logística, serviços financeiros e saúde. Atuo de ponta a ponta com React, Next.js, Node.js e NestJS — e integro LLMs, recuperação de documentos e ferramentas MCP a fluxos reais de negócio.",
     ctaWork: "Ver trabalhos",
     ctaResume: "Baixar currículo",
-    availability: "Aberto a vagas remotas internacionais",
     facts: {
       now: { label: "Agora", value: "Desenvolvedor Full Stack Sênior na Stratesys" },
       before: { label: "Antes", value: "Grupo Inlog · Unicred · uFLY" },
@@ -432,8 +431,8 @@ export const pt: Dictionary = {
   },
   contact: {
     label: "Contato",
-    title: "Procurando um engenheiro full stack sênior?",
-    body: "Estou aberto a vagas remotas internacionais em engenharia full stack e frontend sênior — inclusive em times que levam IA para produtos reais. O jeito mais rápido de falar comigo é por e-mail.",
+    title: "Construindo algo que precisa dar certo?",
+    body: "Rendo mais em times que se importam com os detalhes — interfaces claras, serviços confiáveis e IA que respeita as regras do negócio. Se esse é o seu time, o e-mail é o jeito mais rápido de falar comigo.",
     hours: "Moro no Brasil (UTC−3) e tenho flexibilidade de horário para trabalhar com times das Américas e da Europa.",
     emailCta: "Enviar e-mail",
     copy: "Copiar endereço",
@@ -443,6 +442,10 @@ export const pt: Dictionary = {
     backToTop: "Voltar ao topo",
     footer: "Projetado e desenvolvido com Next.js.",
     viewSource: "Ver o código",
+    codeNote: {
+      text: "A maior parte do meu código de produção fica em repositórios privados das empresas em que atuo.",
+      link: "O código deste site é público.",
+    },
     timeDiff: {
       ahead: "Agora são {time} em João Pessoa — {diff} à sua frente.",
       behind: "Agora são {time} em João Pessoa — {diff} atrás de você.",

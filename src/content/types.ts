@@ -136,7 +136,6 @@ export interface Dictionary {
     intro: string;
     ctaWork: string;
     ctaResume: string;
-    availability: string;
     facts: {
       now: { label: string; value: string };
       before: { label: string; value: string };
@@ -182,6 +181,8 @@ export interface Dictionary {
     backToTop: string;
     footer: string;
     viewSource: string;
+    /** Context for the GitHub link: most production work is private. */
+    codeNote: { text: string; link: string };
     /** `{time}` and `{diff}` are replaced at runtime with the visitor-relative values. */
     timeDiff: { ahead: string; behind: string; same: string };
   };

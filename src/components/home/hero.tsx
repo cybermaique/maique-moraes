@@ -10,17 +10,11 @@ export function Hero({ t, locale }: { t: Dictionary; locale: Locale }) {
     <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
       <div aria-hidden="true" className="blueprint absolute inset-0 -z-10" />
       <div className="shell pt-10 pb-16 md:pt-16 md:pb-24">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <p className="eyebrow">
-            <span>
-              <span className="text-ink">{profile.name}</span> · {hero.eyebrow}
-            </span>
-          </p>
-          <p className="inline-flex items-center gap-2.5 rounded-full border border-line bg-paper/70 px-3.5 py-1.5 text-sm text-ink-2">
-            <span className="live-dot" aria-hidden="true" />
-            {hero.availability}
-          </p>
-        </div>
+        <p className="eyebrow">
+          <span>
+            <span className="text-ink">{profile.name}</span> · {hero.eyebrow}
+          </span>
+        </p>
 
         <h1 id="hero-title" className="display-xl mt-8 md:mt-12">
           {hero.headline.map((line, index) => (

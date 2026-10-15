@@ -4,7 +4,7 @@ export const en: Dictionary = {
   meta: {
     title: "Maique Moraes — Senior Full Stack Software Engineer",
     description:
-      "Senior full stack engineer with 6+ years building TypeScript products with React, Next.js, Node.js, and NestJS — and integrating LLMs, RAG, and MCP into real business workflows. Open to international remote roles.",
+      "Senior full stack engineer with 6+ years building TypeScript products with React, Next.js, Node.js, and NestJS — and integrating LLMs, RAG, and MCP into real business workflows. Based in João Pessoa, Brazil (UTC−3).",
     ogAlt: "Maique Moraes, Senior Full Stack Software Engineer",
   },
   a11y: {
@@ -32,7 +32,6 @@ export const en: Dictionary = {
       "I’m Maique Moraes, a full stack engineer with 6+ years building TypeScript products for enterprise procurement, logistics, financial services, and healthcare. I work end to end with React, Next.js, Node.js, and NestJS — and integrate LLMs, retrieval, and MCP tools into real business workflows.",
     ctaWork: "See selected work",
     ctaResume: "Download resume",
-    availability: "Open to international remote roles",
     facts: {
       now: { label: "Now", value: "Senior Full Stack Developer at Stratesys" },
       before: { label: "Before", value: "Grupo Inlog · Unicred · uFLY" },
@@ -432,8 +431,8 @@ export const en: Dictionary = {
   },
   contact: {
     label: "Contact",
-    title: "Hiring a senior full stack engineer?",
-    body: "I’m open to international remote roles in senior full stack and frontend engineering — including teams bringing AI into real products. Email is the fastest way to reach me.",
+    title: "Building something that has to be right?",
+    body: "I do my best work with teams that care about the details — clear interfaces, dependable services, and AI that fits real business rules. If that sounds like your team, email is the fastest way to reach me.",
     hours: "Based in Brazil (UTC−3), with flexible hours for overlap with teams in the Americas and Europe.",
     emailCta: "Send an email",
     copy: "Copy address",
@@ -443,6 +442,10 @@ export const en: Dictionary = {
     backToTop: "Back to top",
     footer: "Designed and built with Next.js.",
     viewSource: "View source",
+    codeNote: {
+      text: "Most of my production code lives in private company repositories.",
+      link: "This site’s source is public.",
+    },
     timeDiff: {
       ahead: "It’s {time} in João Pessoa — {diff} ahead of you.",
       behind: "It’s {time} in João Pessoa — {diff} behind you.",

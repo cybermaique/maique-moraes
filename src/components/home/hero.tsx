@@ -80,7 +80,7 @@ export function Hero({ t, locale }: { t: Dictionary; locale: Locale }) {
               </li>
             </ul>
           </div>
-          <div className="rise lg:col-span-7" style={{ "--i": 4 } as CSSProperties}>
+          <div className="rise-fade lg:col-span-7" style={{ "--i": 4 } as CSSProperties}>
             <SystemDiagram figure={hero.figure} hint={hero.figureHint} layers={hero.layers} />
           </div>
         </div>

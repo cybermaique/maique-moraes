@@ -1,10 +1,17 @@
-import { Bricolage_Grotesque, IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
+import localFont from "next/font/local";
+import { IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
 
-/** Display face: characterful grotesque with optical sizing for large headlines. */
-const display = Bricolage_Grotesque({
-  subsets: ["latin"],
+/**
+ * Display face: Bricolage Grotesque, self-hosted (SIL OFL 1.1, see fonts/OFL.txt).
+ * The file is Google Fonts' Latin subset instanced at weight 600 with the optical-size
+ * axis kept: half the size of the full variable font (≈40 KB instead of ≈77 KB) while
+ * preserving the tight display cut the headlines rely on.
+ */
+const display = localFont({
+  src: "./fonts/bricolage-grotesque-latin-600-opsz.woff2",
+  weight: "600",
+  style: "normal",
   variable: "--font-bricolage",
-  axes: ["opsz"],
   display: "swap",
 });
 

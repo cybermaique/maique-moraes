@@ -51,10 +51,10 @@ export function BackgroundSection({ t }: { t: Dictionary }) {
           </div>
 
           <figure className="reveal crop-marks self-start rounded-[1.25rem] bg-paper-2 p-8 sm:p-10 lg:col-span-7 lg:mt-16">
-            <span aria-hidden="true" className="block font-display text-7xl leading-[0.6] text-accent">
+            <span aria-hidden="true" className="block font-display text-7xl leading-[0.6] font-semibold text-accent">
               “
             </span>
-            <blockquote className="mt-4 font-display text-[1.375rem] leading-[1.4] font-medium tracking-[-0.01em] md:text-[1.625rem]">
+            <blockquote className="mt-4 text-[1.375rem] leading-[1.45] font-medium tracking-[-0.01em] md:text-[1.625rem]">
               <p>{background.quote.text}</p>
             </blockquote>
             <figcaption className="mt-8 border-t border-line-strong pt-5">

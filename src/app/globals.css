@@ -442,6 +442,10 @@
 
 /* ─── Motion ───────────────────────────────────────────────── */
 @media (prefers-reduced-motion: no-preference) {
+  /*
+   * Entrance for above-the-fold text: movement only, never opacity, so the
+   * text is painted in the first frame and Largest Contentful Paint is not delayed.
+   */
   .rise {
     animation: rise 0.9s var(--ease-out-expo) both;
     animation-delay: calc(var(--i, 0) * 90ms);
@@ -449,8 +453,23 @@
 
   @keyframes rise {
     from {
+      transform: translateY(0.35em);
+    }
+    to {
+      transform: none;
+    }
+  }
+
+  /* Fade and rise, for supporting elements that are never the largest paint. */
+  .rise-fade {
+    animation: rise-fade 0.9s var(--ease-out-expo) both;
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  @keyframes rise-fade {
+    from {
       opacity: 0;
-      transform: translateY(0.45em);
+      transform: translateY(1.25rem);
     }
     to {
       opacity: 1;

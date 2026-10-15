@@ -28,8 +28,18 @@ The signature element is a set of **original interactive diagrams** that explain
 - **Motion**: short entrance on the headline; scroll-driven reveals as progressive enhancement (content is never hidden without support); diagrams animate state changes. Everything respects `prefers-reduced-motion`.
 - **Avoided on purpose**: fake terminals, code-window cards, glowing gradients, 3D globes, loading gates, chatbots, scroll hijacking, client logos.
 
-## Research (14 October 2026)
+## Research
+
+### 14 October 2026
 
 - [paulomartins.dev](https://www.paulomartins.dev/) — rendered and reviewed. Strengths: name-first typography, scannable proof numbers, numbered navigation. Avoided: code-editor card, commercial services/pricing funnel, unverified-looking metrics.
 - [maicon-kevyn-portifolio.vercel.app](https://maicon-kevyn-portifolio.vercel.app/) — rendered and reviewed. A dark sci-fi theme with a "system initializing" loader, a wireframe globe, a terminal bio, and a chat bubble. Useful as a list of patterns to avoid for this audience.
-- Awwwards, Godly, and CSS Design Awards galleries were not reviewed in this session; the direction relies on established editorial and product-design practice instead. No findings are attributed to them.
+
+### 15 October 2026 — market comparison
+
+Rendered and reviewed at 1440 × 900:
+
+- **Engineers recruiters admire** — [Brittany Chiang](https://brittanychiang.com), [Lee Robinson](https://leerob.com), [Paco Coursey](https://paco.me), [Emil Kowalski](https://emilkowal.ski), [Rauno Freiberg](https://rauno.me). They win on clarity and proof: current employer in the first lines, recognisable companies, open-source projects, and writing. Visual restraint is the norm; Rauno is the exception with bold interaction-led typography.
+- **Awwwards portfolio winners** — [Elliott Mangham](https://elliott.mangham.dev), [Pacôme Pertant](https://pacomepertant.com), [Bruno Simon](https://bruno-simon.com). Loaders, WebGL, sound, and 3D. Impressive to designers, slow for recruiters, and weak at communicating product engineering. Elliott's dense intro grid (position, local time, availability) was the most transferable idea.
+
+Changes adopted from this review: current role and previous employers in the hero, a live local clock, a visitor-relative time-zone line in the contact section, and a link to this site's public source code. Not adopted: loaders, WebGL, sound, custom cursors, and command palettes — they would add latency or novelty without helping the hiring decision.

@@ -15,6 +15,9 @@ Private source files are not committed to this repository.
 | Site content | Source | Treatment |
 | --- | --- | --- |
 | Contacts (email, LinkedIn, GitHub), João Pessoa, UTC−3 | Resume, LinkedIn, base §3.1 | Exact supplied values. Phone number is not shown on the page; it is only inside the original resume PDF. |
+| Hero facts: current role (Stratesys), previous employers | Resume, LinkedIn, base §5 | Employer names only, as on LinkedIn. |
+| Live local time and visitor time difference | Base §3.1 (João Pessoa, UTC−3) | Computed in the browser; nothing about the visitor is stored or sent. |
+| "View source" link | Public GitHub repository | Points to this site's own public repository. |
 | "6+ years" | Base §5 | Development starts August 2020; earlier support work excluded. |
 | "4 industries" | LinkedIn About | Procurement, logistics, financial services, healthcare. |
 | "2 AI assistants" | INL-01, STR-01–03 | Logistics and procurement assistants integrated into products. |

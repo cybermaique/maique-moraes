@@ -41,8 +41,9 @@
 }
 
 /* ─── Themes ───────────────────────────────────────────────────
-   Dark is the default (set on <html> by the root layout). Light keeps
-   the @theme values above. Components only ever use the tokens.
+   The visitor's system preference picks the initial theme (see
+   lib/theme.ts); a saved choice from the header toggle overrides it.
+   Light keeps the @theme values above; components only use tokens.
    ───────────────────────────────────────────────────────────── */
 :root {
   color-scheme: light;

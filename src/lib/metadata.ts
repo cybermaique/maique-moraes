@@ -3,8 +3,11 @@ import { casePath, getCaseStudy, getDictionary, homePath, languageTags, profile,
 import { getSiteUrl, isIndexable } from "./site-url";
 
 export const viewport: Viewport = {
-  themeColor: "#111412",
-  colorScheme: "dark light",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f3f1ea" },
+    { media: "(prefers-color-scheme: dark)", color: "#111412" },
+  ],
+  colorScheme: "light dark",
 };
 
 const openGraphLocales: Record<Locale, string> = { en: "en_US", pt: "pt_BR" };

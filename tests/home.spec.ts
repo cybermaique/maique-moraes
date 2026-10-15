@@ -65,7 +65,18 @@ test.describe("homepage", () => {
     await expect(page).toHaveURL(/\/$/);
   });
 
+  test("follows the system theme by default", async ({ page }) => {
+    const html = page.locator("html");
+    await page.emulateMedia({ colorScheme: "light" });
+    await page.goto("/");
+    await expect(html).toHaveAttribute("data-theme", "light");
+    await page.emulateMedia({ colorScheme: "dark" });
+    await page.reload();
+    await expect(html).toHaveAttribute("data-theme", "dark");
+  });
+
   test("switches theme and remembers the choice", async ({ page }) => {
+    await page.emulateMedia({ colorScheme: "dark" });
     await page.goto("/");
     const html = page.locator("html");
     await expect(html).toHaveAttribute("data-theme", "dark");

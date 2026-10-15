@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { MoonIcon, SunIcon } from "@/components/ui/icons";
 import { defaultTheme, themeStorageKey, type Theme } from "@/lib/theme";
 
@@ -15,6 +15,21 @@ const readTheme = (): Theme => (document.documentElement.dataset.theme === "ligh
 export function ThemeToggle({ toLight, toDark }: { toLight: string; toDark: string }) {
   const theme = useSyncExternalStore(subscribe, readTheme, () => defaultTheme);
   const next: Theme = theme === "dark" ? "light" : "dark";
+
+  // Until the visitor picks a theme, keep following the operating system.
+  useEffect(() => {
+    const query = window.matchMedia("(prefers-color-scheme: light)");
+    const follow = (event: MediaQueryListEvent) => {
+      try {
+        if (localStorage.getItem(themeStorageKey)) return;
+      } catch {
+        // Without storage there is no saved choice; keep following the system.
+      }
+      document.documentElement.dataset.theme = event.matches ? "light" : "dark";
+    };
+    query.addEventListener("change", follow);
+    return () => query.removeEventListener("change", follow);
+  }, []);
 
   function toggle() {
     const root = document.documentElement;

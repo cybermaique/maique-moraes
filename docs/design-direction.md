@@ -24,6 +24,7 @@ The signature element is a set of **original interactive diagrams** that explain
 
 - **Type**: Bricolage Grotesque (display, optical sizing), Instrument Sans (reading), IBM Plex Mono (labels and figures only). Self-hosted via `next/font`.
 - **Colour**: paper `#f3f1ea`, ink `#121512`, ultramarine `#2b3cdc` as the single signal colour; night sections invert with `#9aa6ff`. All text pairs meet WCAG AA.
+- **Themes**: light (paper) and dark share one token set. The initial theme follows the visitor's operating system; the header toggle overrides it and is remembered. Light carries the strongest editorial rhythm (paper with dark bands); dark keeps the same hierarchy with deeper night sections.
 - **Motion**: short entrance on the headline; scroll-driven reveals as progressive enhancement (content is never hidden without support); diagrams animate state changes. Everything respects `prefers-reduced-motion`.
 - **Avoided on purpose**: fake terminals, code-window cards, glowing gradients, 3D globes, loading gates, chatbots, scroll hijacking, client logos.
 

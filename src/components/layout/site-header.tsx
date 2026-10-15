@@ -128,12 +128,12 @@ export function SiteHeader({ locale, homeHref, alternateHref, nav, a11y, trackSe
             href={alternateHref}
             hrefLang={languageTags[other]}
             lang={languageTags[other]}
-            aria-label={a11y.switchLanguage}
             className="mono-label flex h-10 items-center gap-1.5 rounded-full px-2 text-muted transition-colors hover:bg-paper-2 hover:text-ink sm:px-3"
           >
             <span className={locale === "en" ? "text-ink" : undefined}>EN</span>
             <span aria-hidden="true" className="text-line-strong">/</span>
             <span className={locale === "pt" ? "text-ink" : undefined}>PT</span>
+            <span className="sr-only"> — {a11y.switchLanguage}</span>
           </a>
           <div className="hidden sm:block">
             <ThemeToggle toLight={a11y.themeToLight} toDark={a11y.themeToDark} />

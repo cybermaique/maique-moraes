@@ -11,7 +11,15 @@ export function RootDocument({ locale, children }: { locale: Locale; children: R
   const t = getDictionary(locale);
   return (
     // The init script may change data-theme before hydration, hence suppressHydrationWarning.
-    <html lang={languageTags[locale]} className={fontVariables} data-theme={defaultTheme} suppressHydrationWarning>
+    // data-scroll-behavior lets Next.js turn off the CSS smooth scroll during route changes,
+    // so a new page opens at the top instead of stopping partway through the animation.
+    <html
+      lang={languageTags[locale]}
+      className={fontVariables}
+      data-theme={defaultTheme}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       {/* eslint-disable-next-line @next/next/no-head-element -- App Router root layout markup, not a Pages Router document. */}
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript + entranceInitScript }} />

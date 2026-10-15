@@ -391,6 +391,27 @@ export const en: Dictionary = {
       },
     ],
   },
+  aiWorkflow: {
+    label: "AI-assisted engineering",
+    title: "AI is part of how I build software, not just what I build.",
+    intro: "I work with AI agents every day to move faster — and I stay accountable for every line that ships.",
+    items: [
+      {
+        title: "Explore & build",
+        body: "I use Claude Code, Codex, and GitHub Copilot to explore codebases, investigate bugs, compare technical approaches, and speed up implementation, while keeping changes focused and maintainable.",
+      },
+      {
+        title: "Test & validate",
+        body: "AI helps me find edge cases, expand automated tests, and drive browser-level checks with Playwright MCP. Generated code and tests are run, reviewed, and validated against expected behavior.",
+      },
+      {
+        title: "Review & ship",
+        body: "AI-assisted pull request reviews in Azure DevOps sit alongside CI checks, static analysis, and human review. AI surfaces issues earlier; correctness, security, and maintainability stay my responsibility.",
+      },
+    ],
+    proof: "See it in practice: this website was built with AI agents under my direction.",
+    proofLink: "The code, tests, agent instructions, and commit history are public.",
+  },
   toolkit: {
     label: "Toolkit",
     title: "Tools I use in production.",
@@ -406,6 +427,10 @@ export const en: Dictionary = {
       {
         name: "AI integration",
         items: ["Azure OpenAI", "GPT-4o", "LangChain.js", "RAG", "Hybrid search", "Azure AI Search", "pgvector", "MCP", "SSE streaming"],
+      },
+      {
+        name: "AI-assisted development",
+        items: ["Claude Code", "OpenAI Codex", "GitHub Copilot", "Playwright MCP", "AI code review"],
       },
       {
         name: "Quality & delivery",

@@ -10,7 +10,7 @@ export function ToolkitSection({ t }: { t: Dictionary }) {
           {toolkit.title}
         </h2>
 
-        <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
           {toolkit.groups.map((group) => (
             <div key={group.name} className="reveal border-t border-ink pt-5">
               <h3 className="mono-label text-ink">{group.name}</h3>

@@ -391,6 +391,27 @@ export const pt: Dictionary = {
       },
     ],
   },
+  aiWorkflow: {
+    label: "Engenharia com IA",
+    title: "A IA faz parte de como eu construo software, não só do que eu construo.",
+    intro: "Trabalho com agentes de IA todos os dias para ganhar velocidade — e respondo por cada linha que vai para produção.",
+    items: [
+      {
+        title: "Explorar e construir",
+        body: "Uso Claude Code, Codex e GitHub Copilot para explorar bases de código, investigar bugs, comparar abordagens técnicas e acelerar a implementação, mantendo mudanças focadas e fáceis de manter.",
+      },
+      {
+        title: "Testar e validar",
+        body: "A IA me ajuda a encontrar casos de borda, ampliar os testes automatizados e conduzir verificações no navegador com Playwright MCP. Código e testes gerados são executados, revisados e validados contra o comportamento esperado.",
+      },
+      {
+        title: "Revisar e entregar",
+        body: "Revisões de pull request assistidas por IA no Azure DevOps funcionam junto com checks de CI, análise estática e revisão humana. A IA antecipa problemas; correção, segurança e manutenção continuam sendo minha responsabilidade.",
+      },
+    ],
+    proof: "Veja na prática: este site foi construído com agentes de IA sob a minha direção.",
+    proofLink: "O código, os testes, as instruções para agentes e o histórico de commits são públicos.",
+  },
   toolkit: {
     label: "Ferramentas",
     title: "O que uso em produção.",
@@ -406,6 +427,10 @@ export const pt: Dictionary = {
       {
         name: "Integração com IA",
         items: ["Azure OpenAI", "GPT-4o", "LangChain.js", "RAG", "Busca híbrida", "Azure AI Search", "pgvector", "MCP", "Streaming via SSE"],
+      },
+      {
+        name: "Desenvolvimento com IA",
+        items: ["Claude Code", "OpenAI Codex", "GitHub Copilot", "Playwright MCP", "Code review com IA"],
       },
       {
         name: "Qualidade e entrega",

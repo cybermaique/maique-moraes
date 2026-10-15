@@ -18,6 +18,7 @@ Private source files are not committed to this repository.
 | Hero facts: current role (Stratesys), previous employers | Resume, LinkedIn, base §5 | Employer names only, as on LinkedIn. |
 | Live local time and visitor time difference | Base §3.1 (João Pessoa, UTC−3) | Computed in the browser; nothing about the visitor is stored or sent. |
 | "View source" link | Public GitHub repository | Points to this site's own public repository. |
+| AI-assisted engineering section and toolkit group | Owner request and statement, 15 October 2026 | Tools and practices (Claude Code, Codex, GitHub Copilot, Playwright MCP, AI-assisted PR review in Azure DevOps) as described by the owner. The "built with AI agents" proof is verifiable in this repository's commit history. |
 | Note on private repositories | Owner statement, 15 October 2026 | Most production work is in private company repositories; stated once, in the contact section. |
 | "6+ years" | Base §5 | Development starts August 2020; earlier support work excluded. |
 | "6 industries" | LinkedIn About; base §5; owner statement, 15 October 2026 | Procurement, logistics, financial services, healthcare, public sector (official documents, Autonomo), vehicle telemetry (Creare). |

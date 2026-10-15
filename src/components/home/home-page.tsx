@@ -6,6 +6,7 @@ import { BackgroundSection, ToolkitSection } from "./background-section";
 import { ExperienceSection } from "./experience-section";
 import { Hero } from "./hero";
 import { NotesSection } from "./notes-section";
+import { AiWorkflowSection } from "./ai-workflow-section";
 import { ProofStrip } from "./proof-strip";
 import { WorkSection } from "./work-section";
 import { profileJsonLd, serializeJsonLd } from "@/lib/structured-data";
@@ -31,6 +32,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         <ExperienceSection t={t} />
         <ApproachSection t={t} />
         <NotesSection t={t} />
+        <AiWorkflowSection t={t} />
         <ToolkitSection t={t} />
         <BackgroundSection t={t} />
         <ContactSection t={t} locale={locale} />

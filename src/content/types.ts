@@ -159,6 +159,14 @@ export interface Dictionary {
   };
   approach: { label: string; title: string; intro: string; principles: Principle[] };
   notes: { label: string; title: string; intro: string; lessonLabel: string; items: FieldNote[] };
+  aiWorkflow: {
+    label: string;
+    title: string;
+    intro: string;
+    items: { title: string; body: string }[];
+    proof: string;
+    proofLink: string;
+  };
   toolkit: { label: string; title: string; groups: { name: string; items: string[] }[]; also: string };
   background: {
     label: string;

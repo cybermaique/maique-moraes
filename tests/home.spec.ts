@@ -89,7 +89,7 @@ test.describe("homepage", () => {
     await expect(page).toHaveURL(/\/$/);
   });
 
-  test("plays the opening sequence once per session", async ({ page }) => {
+  test("plays the opening sequence on every page load", async ({ page }) => {
     // Record whether the head script ever turns the intro on, without racing its timer.
     await page.addInitScript(() => {
       const w = window as typeof window & { __introPlayed?: boolean };
@@ -106,9 +106,9 @@ test.describe("homepage", () => {
     // Released once the sequence has finished, so later navigations never replay it.
     await expect(html).not.toHaveAttribute("data-intro", /.*/, { timeout: 5_000 });
 
+    // A reload is a new page load, so the sequence plays again.
     await page.reload();
-    expect(await introPlayed()).toBe(false);
-    await expect(html).not.toHaveAttribute("data-intro", /.*/);
+    expect(await introPlayed()).toBe(true);
   });
 
   test("follows the system theme by default", async ({ page }) => {

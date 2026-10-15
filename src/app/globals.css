@@ -79,16 +79,14 @@
   display: none;
 }
 
-/* Brief cross-fade when the visitor switches theme. */
-@media (prefers-reduced-motion: no-preference) {
-  html.theme-transition,
-  html.theme-transition * {
-    transition:
-      background-color 0.35s ease,
-      border-color 0.35s ease,
-      color 0.35s ease,
-      fill 0.35s ease !important;
-  }
+/* Brief cross-fade when the visitor switches theme (colour only, so it also runs with reduced motion). */
+html.theme-transition,
+html.theme-transition * {
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease,
+    fill 0.35s ease !important;
 }
 
 /* ─── Base ─────────────────────────────────────────────────── */
@@ -902,9 +900,9 @@
 }
 
 /* ─── Opening sequence ─────────────────────────────────────────
-   Plays once per session (data-intro is set by lib/intro.ts before
-   first paint). Text is never hidden: only the drafting grid, the
-   monogram stroke, and the diagram assemble, so LCP is unaffected.
+   Plays on every full page load (data-intro is set by lib/intro.ts
+   before first paint). Text is never hidden: only the drafting grid,
+   the monogram stroke, and the diagram assemble, so LCP is unaffected.
    ───────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: no-preference) {
   /* The drafting grid unrolls from the top-left corner. */
@@ -981,6 +979,116 @@
     }
     to {
       transform: none;
+    }
+  }
+}
+
+/* ─── Reduced motion ───────────────────────────────────────────
+   "Reduced" is not "none": visitors who turned animations off still
+   get the same moments, told with fades and strokes instead of
+   movement, scaling, or wipes across the screen.
+   ───────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .rise-fade {
+    animation: fade-in 0.9s ease both;
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: fade-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+
+  .dg-lane[data-active="true"] .dg-step {
+    animation: fade-in 0.5s ease both;
+  }
+
+  /* Pulses glow in place at the middle of each wire instead of travelling. */
+  .system-link-down::after,
+  .system-link-up::after {
+    top: calc(50% - 3px);
+    bottom: auto;
+  }
+  .system-link-down::after {
+    animation: glow 2.4s ease-in-out 4;
+    animation-delay: var(--d, 0s);
+  }
+  .system-link-up::after {
+    animation: glow 2.4s ease-in-out 4;
+    animation-delay: calc(var(--d, 0s) + 1.2s);
+  }
+
+  .live-dot {
+    animation: soft-blink 2.4s ease-in-out 3;
+  }
+
+  /* Opening sequence, fade edition. */
+  html[data-intro="play"] .blueprint {
+    animation: intro-fade-grid 1.4s ease both;
+  }
+  html[data-intro="play"] .monogram-stroke {
+    stroke-dasharray: 1;
+    animation: intro-trace 0.9s ease 0.1s both;
+  }
+  html[data-intro="play"] .monogram-dot {
+    animation: fade-in 0.4s ease 0.85s both;
+  }
+  html[data-intro="play"] .system-band {
+    animation: fade-in 0.7s ease both;
+    animation-delay: calc(0.45s + var(--layer, 0) * 0.2s);
+  }
+  html[data-intro="play"] .system-link {
+    animation: fade-in 0.45s ease both;
+    animation-delay: calc(0.65s + var(--layer, 0) * 0.2s);
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes intro-fade-grid {
+    0% {
+      opacity: 0;
+    }
+    60% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.55;
+    }
+  }
+  @keyframes intro-trace {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes glow {
+    0%,
+    60%,
+    100% {
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+  }
+  @keyframes soft-blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.35;
     }
   }
 }

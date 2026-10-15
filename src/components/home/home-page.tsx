@@ -8,6 +8,7 @@ import { Hero } from "./hero";
 import { NotesSection } from "./notes-section";
 import { ProofStrip } from "./proof-strip";
 import { WorkSection } from "./work-section";
+import { profileJsonLd, serializeJsonLd } from "@/lib/structured-data";
 
 export function HomePage({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
@@ -23,6 +24,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         trackSections
       />
       <main id="main">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(profileJsonLd(locale)) }} />
         <Hero t={t} />
         <ProofStrip proof={t.proof} />
         <WorkSection t={t} locale={locale} />

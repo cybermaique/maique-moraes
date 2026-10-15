@@ -18,6 +18,7 @@ Private source files are not committed to this repository.
 | Hero facts: current role (Stratesys), previous employers | Resume, LinkedIn, base §5 | Employer names only, as on LinkedIn. |
 | Live local time and visitor time difference | Base §3.1 (João Pessoa, UTC−3) | Computed in the browser; nothing about the visitor is stored or sent. |
 | "View source" link | Public GitHub repository | Points to this site's own public repository. |
+| Note on private repositories | Owner statement, 15 October 2026 | Most production work is in private company repositories; stated once, in the contact section. |
 | "6+ years" | Base §5 | Development starts August 2020; earlier support work excluded. |
 | "4 industries" | LinkedIn About | Procurement, logistics, financial services, healthcare. |
 | "2 AI assistants" | INL-01, STR-01–03 | Logistics and procurement assistants integrated into products. |
@@ -30,19 +31,19 @@ Private source files are not committed to this repository.
 | Principles | STR-04, INL-01, UNI-01, EP-05, UNI-02 | Each tied to a described piece of work. |
 | Field notes | EP-01, EP-04, EP-06, EP-03 | Employer intentionally unnamed (the base does not specify it). |
 | Recommendation quote | LinkedIn (public) | Original Portuguese on `/pt`; English translation labelled as such. |
-| Languages | Resume, base §3.3 | English shown as intermediate, as self-declared on the resume. |
+| Languages | Resume, base §3.3; owner confirmation, 15 October 2026 | English shown as intermediate. |
 
 ## Conservative decisions
 
 - No client names, endpoints, schemas, infrastructure topology, source code, or screenshots. Diagrams are original conceptual illustrations, labelled as such.
 - No invented repositories, demos, metrics, awards, or logos. Qualitative outcomes are stated as qualitative.
 - Excluded: salary, contract arrangement, notice period, phone number on the page, personal history, side projects that are only planned (RepoPilot AI), and the unconfirmed historical claims listed in base §17.1.
+- No "open to work" messaging (owner decision, 15 October 2026): the site invites conversations without signalling a job search. The original resume PDF keeps its own wording.
 
 ## Owner review before launch
 
-1. Confirm you're comfortable publishing the Ricardo Oliveira recommendation (and its English translation).
-2. Confirm the English level you want shown publicly: the resume says *Intermediate*; LinkedIn says *Professional working proficiency*.
-3. The published resume PDF contains your phone number.
-4. Optionally set `NEXT_PUBLIC_SITE_URL` once a custom domain exists (see README).
+1. The Ricardo Oliveira recommendation is published from the public LinkedIn profile; remove it from `background.quote` if preferred.
+2. The published resume PDF contains your phone number.
+3. Optionally set `NEXT_PUBLIC_SITE_URL` once a custom domain exists (see README).
 
 Future content changes belong in `src/content/en.ts` and `src/content/pt.ts`. Keep personal contributions, team outcomes, and unmeasured benefits distinct in both languages.

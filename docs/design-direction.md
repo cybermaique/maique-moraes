@@ -25,7 +25,9 @@ The signature element is a set of **original interactive diagrams** that explain
 - **Type**: Bricolage Grotesque (display, optical sizing), Instrument Sans (reading), IBM Plex Mono (labels and figures only). Self-hosted via `next/font`.
 - **Colour**: paper `#f3f1ea`, ink `#121512`, ultramarine `#2b3cdc` as the single signal colour; night sections invert with `#9aa6ff`. All text pairs meet WCAG AA.
 - **Themes**: light (paper) and dark share one token set. The initial theme follows the visitor's operating system; the header toggle overrides it and is remembered. Light carries the strongest editorial rhythm (paper with dark bands); dark keeps the same hierarchy with deeper night sections.
-- **Motion**: short entrance on the headline; scroll-driven reveals as progressive enhancement (content is never hidden without support); diagrams animate state changes. Everything respects `prefers-reduced-motion`.
+- **Motion**: short entrance on the headline; scroll-driven reveals as progressive enhancement (content is never hidden without support); diagrams animate state changes. Everything respects `prefers-reduced-motion`. Above-the-fold text animates with movement only, never opacity, so it paints in the first frame and LCP is not delayed.
+- **Fonts**: Bricolage Grotesque is self-hosted from `src/app/fonts` (Latin subset, weight 600, optical-size axis kept, SIL OFL 1.1), half the size of the full variable font. Instrument Sans and IBM Plex Mono come from `next/font/google`.
+- **Measured quality (15 October 2026, Lighthouse mobile, local production build)**: Performance 91–92, Accessibility 100, Best Practices 100; SEO limited only by the intentional `noindex` outside production. Responsive audit: no horizontal overflow at 320, 360, 375, 390, 414, 430, 768, or 1024 px on any page.
 - **Avoided on purpose**: fake terminals, code-window cards, glowing gradients, 3D globes, loading gates, chatbots, scroll hijacking, client logos.
 
 ## Research

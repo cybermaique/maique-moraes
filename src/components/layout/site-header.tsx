@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { profile } from "@/content/profile";
 import { languageTags, type Dictionary, type Locale } from "@/content/types";
 import { ArrowRight, ArrowUpRight, Monogram } from "@/components/ui/icons";
+import { ThemeToggle } from "./theme-toggle";
 
 export const sectionIds = ["work", "experience", "approach", "contact"] as const;
 type SectionId = (typeof sectionIds)[number];
@@ -134,6 +135,7 @@ export function SiteHeader({ locale, homeHref, alternateHref, nav, a11y, trackSe
             <span aria-hidden="true" className="text-line-strong">/</span>
             <span className={locale === "pt" ? "text-ink" : undefined}>PT</span>
           </a>
+          <ThemeToggle toLight={a11y.themeToLight} toDark={a11y.themeToDark} />
           <a
             href={profile.resume}
             target="_blank"

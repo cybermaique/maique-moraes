@@ -120,6 +120,8 @@ export interface Dictionary {
     switchLanguage: string;
     home: string;
     newTab: string;
+    themeToLight: string;
+    themeToDark: string;
   };
   nav: {
     work: string;

@@ -15,6 +15,8 @@ export const en: Dictionary = {
     switchLanguage: "Ler em português",
     home: "Maique Moraes — home",
     newTab: "opens in a new tab",
+    themeToLight: "Switch to light theme",
+    themeToDark: "Switch to dark theme",
   },
   nav: {
     work: "Work",

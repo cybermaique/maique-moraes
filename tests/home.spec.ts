@@ -65,6 +65,17 @@ test.describe("homepage", () => {
     await expect(page).toHaveURL(/\/$/);
   });
 
+  test("switches theme and remembers the choice", async ({ page }) => {
+    await page.goto("/");
+    const html = page.locator("html");
+    await expect(html).toHaveAttribute("data-theme", "dark");
+    await page.getByRole("button", { name: en.a11y.themeToLight }).click();
+    await expect(html).toHaveAttribute("data-theme", "light");
+    await page.reload();
+    await expect(html).toHaveAttribute("data-theme", "light");
+    await expect(page.getByRole("button", { name: en.a11y.themeToDark })).toBeVisible();
+  });
+
   test("every internal link resolves", async ({ page, request }) => {
     await page.goto("/");
     const hrefs = await page.locator("a[href^='/']").evaluateAll((links) =>

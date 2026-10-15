@@ -40,6 +40,50 @@
   --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
+/* ─── Themes ───────────────────────────────────────────────────
+   Dark is the default (set on <html> by the root layout). Light keeps
+   the @theme values above. Components only ever use the tokens.
+   ───────────────────────────────────────────────────────────── */
+:root {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-paper: #111412;
+  --color-paper-2: #181c19;
+  --color-paper-3: #222722;
+  --color-ink: #eeece5;
+  --color-ink-2: #c6c9c1;
+  --color-muted: #9fa49b;
+  --color-line: rgb(238 236 229 / 0.11);
+  --color-line-strong: rgb(238 236 229 / 0.26);
+
+  --color-accent: #9aa6ff;
+  --color-accent-deep: #c4cbff;
+  --color-accent-soft: rgb(154 166 255 / 0.13);
+
+  --color-night: #090b0a;
+  --color-night-2: #121614;
+  --color-night-3: #1a1f1c;
+
+  --color-live: #4fc27e;
+  --color-alert: #ff8f63;
+  --color-alert-soft: rgb(255 143 99 / 0.12);
+}
+
+/* Brief cross-fade when the visitor switches theme. */
+@media (prefers-reduced-motion: no-preference) {
+  html.theme-transition,
+  html.theme-transition * {
+    transition:
+      background-color 0.35s ease,
+      border-color 0.35s ease,
+      color 0.35s ease,
+      fill 0.35s ease !important;
+  }
+}
+
 /* ─── Base ─────────────────────────────────────────────────── */
 @layer base {
   html {
@@ -317,8 +361,7 @@
 }
 
 .site-header {
-  --header-rgb: 243 241 234;
-  background-color: rgb(var(--header-rgb) / var(--header-alpha));
+  background-color: color-mix(in srgb, var(--color-paper) calc(var(--header-alpha) * 100%), transparent);
   border-bottom: 1px solid var(--color-line);
   color: var(--color-ink);
   backdrop-filter: saturate(1.4) blur(16px);
@@ -331,15 +374,14 @@
 
 /* Over dark sections the header swaps its tokens, so every child follows. */
 .site-header[data-tone="night"] {
-  --header-rgb: 15 18 17;
-  --color-ink: #eeece5;
+  --color-ink: var(--color-snow);
   --color-ink-2: #c4c7bf;
-  --color-muted: #a7aca3;
-  --color-paper: #0f1211;
-  --color-paper-2: #20251f;
-  --color-line: rgb(238 236 229 / 0.12);
+  --color-muted: var(--color-fog);
+  --color-paper: var(--color-night);
+  --color-paper-2: var(--color-night-3);
+  --color-line: var(--color-night-line);
   --color-line-strong: rgb(238 236 229 / 0.3);
-  --color-accent: #9aa6ff;
+  --color-accent: var(--color-signal);
 }
 
 @supports (animation-timeline: scroll()) {
@@ -455,7 +497,7 @@
   padding: 1rem 1.1rem 1.1rem;
   border: 1px solid var(--color-line);
   border-radius: 1rem;
-  background: rgb(243 241 234 / 0.6);
+  background: color-mix(in srgb, var(--color-paper) 60%, transparent);
   text-align: left;
   cursor: pointer;
   transition:
@@ -469,7 +511,7 @@
 .system-band[aria-pressed="true"] {
   border-color: var(--color-accent);
   background: var(--color-accent-soft);
-  box-shadow: 0 0 0 4px rgb(43 60 220 / 0.08);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 10%, transparent);
 }
 .system-index {
   color: var(--color-muted);
@@ -499,7 +541,7 @@
     color 0.35s var(--ease-out-expo);
 }
 .system-band[aria-pressed="true"] .system-node {
-  border-color: rgb(43 60 220 / 0.55);
+  border-color: color-mix(in srgb, var(--color-accent) 55%, transparent);
   color: var(--color-accent-deep);
 }
 

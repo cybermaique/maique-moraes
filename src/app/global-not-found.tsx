@@ -5,6 +5,7 @@ import { fontVariables } from "./fonts";
 import { en } from "@/content/en";
 import { pt } from "@/content/pt";
 import { Monogram } from "@/components/ui/icons";
+import { defaultTheme, themeInitScript } from "@/lib/theme";
 
 export const metadata: Metadata = {
   title: "404 — Maique Moraes",
@@ -13,7 +14,10 @@ export const metadata: Metadata = {
 
 export default function GlobalNotFound() {
   return (
-    <html lang="en" className={fontVariables}>
+    <html lang="en" className={fontVariables} data-theme={defaultTheme} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>
         <main className="shell flex min-h-dvh flex-col justify-center py-16">
           <Link href="/" className="mb-16 inline-flex w-fit items-center gap-3" aria-label={en.a11y.home}>

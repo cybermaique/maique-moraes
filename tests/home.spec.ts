@@ -89,6 +89,28 @@ test.describe("homepage", () => {
     await expect(page).toHaveURL(/\/$/);
   });
 
+  test("plays the opening sequence once per session", async ({ page }) => {
+    // Record whether the head script ever turns the intro on, without racing its timer.
+    await page.addInitScript(() => {
+      const w = window as typeof window & { __introPlayed?: boolean };
+      w.__introPlayed = false;
+      new MutationObserver(() => {
+        if (document.documentElement?.dataset.intro === "play") w.__introPlayed = true;
+      }).observe(document, { attributes: true, subtree: true, attributeFilter: ["data-intro"] });
+    });
+    const introPlayed = () => page.evaluate(() => (window as typeof window & { __introPlayed?: boolean }).__introPlayed);
+    const html = page.locator("html");
+
+    await page.goto("/");
+    expect(await introPlayed()).toBe(true);
+    // Released once the sequence has finished, so later navigations never replay it.
+    await expect(html).not.toHaveAttribute("data-intro", /.*/, { timeout: 5_000 });
+
+    await page.reload();
+    expect(await introPlayed()).toBe(false);
+    await expect(html).not.toHaveAttribute("data-intro", /.*/);
+  });
+
   test("follows the system theme by default", async ({ page }) => {
     const html = page.locator("html");
     await page.emulateMedia({ colorScheme: "light" });

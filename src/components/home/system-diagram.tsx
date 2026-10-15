@@ -37,7 +37,8 @@ export function SystemDiagram({ figure, hint, layers }: SystemDiagramProps) {
 
       <div role="group" aria-label={`${figure}. ${hint}`}>
         {layers.map((layer, index) => (
-          <div key={layer.id}>
+          // --layer staggers the opening sequence (see globals.css, data-intro).
+          <div key={layer.id} className="system-layer" style={{ "--layer": index } as CSSProperties}>
             <button
               type="button"
               className="system-band"

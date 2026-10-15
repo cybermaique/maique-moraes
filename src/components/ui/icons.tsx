@@ -116,8 +116,17 @@ export function Monogram({ size = 30, className = "" }: { size?: number; classNa
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false" className={className}>
       <rect x="0.5" y="0.5" width="31" height="31" rx="8" fill="currentColor" />
-      <path d="M8 22V10l8 7.5L24 10v12" stroke="var(--color-paper)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="16" cy="17.5" r="2.1" fill="var(--color-signal)" />
+      {/* pathLength lets the opening sequence draw the stroke with a normalized dash. */}
+      <path
+        className="monogram-stroke"
+        d="M8 22V10l8 7.5L24 10v12"
+        pathLength={1}
+        stroke="var(--color-paper)"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle className="monogram-dot" cx="16" cy="17.5" r="2.1" fill="var(--color-signal)" />
     </svg>
   );
 }

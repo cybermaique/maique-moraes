@@ -900,3 +900,87 @@
   text-transform: uppercase;
   text-align: center;
 }
+
+/* ─── Opening sequence ─────────────────────────────────────────
+   Plays once per session (data-intro is set by lib/intro.ts before
+   first paint). Text is never hidden: only the drafting grid, the
+   monogram stroke, and the diagram assemble, so LCP is unaffected.
+   ───────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  /* The drafting grid unrolls from the top-left corner. */
+  html[data-intro="play"] .blueprint {
+    animation: intro-unroll 1.6s var(--ease-out-expo) both;
+  }
+
+  /* The monogram traces itself, then its signal dot lands. */
+  html[data-intro="play"] .monogram-stroke {
+    stroke-dasharray: 1;
+    animation: intro-draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.1s both;
+  }
+  html[data-intro="play"] .monogram-dot {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: intro-pop 0.45s var(--ease-out-expo) 0.85s both;
+  }
+
+  /* The system diagram assembles layer by layer, wires drawing between them. */
+  html[data-intro="play"] .system-band {
+    animation: intro-layer 0.7s var(--ease-out-expo) both;
+    animation-delay: calc(0.45s + var(--layer, 0) * 0.2s);
+  }
+  html[data-intro="play"] .system-link {
+    transform-origin: top;
+    animation: intro-wire 0.45s var(--ease-out-expo) both;
+    animation-delay: calc(0.65s + var(--layer, 0) * 0.2s);
+  }
+
+  /* Drawn crisp, then settles to the grid's resting opacity (0.55). */
+  @keyframes intro-unroll {
+    0% {
+      clip-path: inset(0 100% 100% 0);
+      opacity: 1;
+    }
+    65% {
+      clip-path: inset(0 0 0 0);
+      opacity: 1;
+    }
+    100% {
+      clip-path: inset(0 0 0 0);
+      opacity: 0.55;
+    }
+  }
+  @keyframes intro-draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes intro-pop {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  @keyframes intro-layer {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes intro-wire {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: none;
+    }
+  }
+}

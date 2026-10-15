@@ -29,7 +29,7 @@ export function BidDiagram({ copy }: { copy: BidDiagramCopy }) {
           type="button"
           aria-pressed={failed}
           onClick={() => setFailed((value) => !value)}
-          className={`btn min-h-10 px-4 text-sm ${failed ? "btn-ink" : "btn-line"}`}
+          className={`btn min-h-10 px-4 py-2.5 text-left text-sm leading-snug whitespace-normal max-sm:w-full max-sm:justify-start ${failed ? "btn-ink" : "btn-line"}`}
         >
           <span aria-hidden="true" className={`size-2 rounded-full ${failed ? "bg-live" : "bg-alert"}`} />
           {failed ? copy.restore : copy.simulate}
@@ -39,7 +39,7 @@ export function BidDiagram({ copy }: { copy: BidDiagramCopy }) {
       <div className="mt-8 grid grid-cols-3 gap-2 sm:gap-4">
         {sources.map((source) => (
           <div key={source.label} className="flex flex-col items-center">
-            <div className="dg-node w-full" data-down={source.down}>
+            <div className="dg-node w-full flex-1" data-down={source.down}>
               <span className="dg-status" aria-hidden="true" />
               <span>{source.label}</span>
             </div>
@@ -52,7 +52,7 @@ export function BidDiagram({ copy }: { copy: BidDiagramCopy }) {
 
       <div className="dg-node dg-node-primary w-full">
         <span className="font-display text-lg font-semibold tracking-tight normal-case">{copy.bff}</span>
-        <span className="text-[0.625rem] text-muted">NestJS</span>
+        <span className="text-[0.6875rem] text-muted">NestJS</span>
       </div>
       <span className="dg-wire mx-auto" aria-hidden="true" />
 

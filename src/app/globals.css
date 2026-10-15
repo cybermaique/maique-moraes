@@ -283,6 +283,16 @@
     background: var(--color-night-3);
   }
 
+  /* Enlarges the touch target of compact text links without changing their look. */
+  .hit-area {
+    position: relative;
+  }
+  .hit-area::after {
+    content: "";
+    position: absolute;
+    inset: -0.625rem -0.25rem;
+  }
+
   /* Underline that draws in from the left. */
   .link-draw {
     background-image: linear-gradient(currentColor, currentColor);
@@ -573,7 +583,7 @@
   right: 0.6rem;
   transform: translateY(-50%);
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-style: normal;
   letter-spacing: 0.06em;
   text-transform: uppercase;

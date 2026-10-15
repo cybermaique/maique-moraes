@@ -28,7 +28,7 @@ export function ContactSection({ t, locale }: { t: Dictionary; locale: Locale })
               timeZone={profile.timeZone}
               utcOffsetMinutes={profile.utcOffsetMinutes}
               templates={contact.timeDiff}
-              className="mt-8 flex items-center gap-2.5 font-mono text-[0.8125rem] text-fog"
+              className="mt-8 flex items-start gap-2.5 font-mono text-[0.8125rem] leading-relaxed text-fog"
             />
           </div>
 
@@ -97,13 +97,13 @@ export function SiteFooter({ t }: { t: Dictionary }) {
               href={profile.sourceCode}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 transition-colors hover:text-snow"
+              className="hit-area inline-flex items-center gap-2 transition-colors hover:text-snow"
             >
               <GitHubMark size={15} />
               {t.contact.viewSource}
               <span className="sr-only">({t.a11y.newTab})</span>
             </a>
-            <a href="#top" className="inline-flex items-center gap-2 transition-colors hover:text-snow">
+            <a href="#top" className="hit-area inline-flex items-center gap-2 transition-colors hover:text-snow">
               {t.contact.backToTop}
               <ArrowUp size={15} />
             </a>

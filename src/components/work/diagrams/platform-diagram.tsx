@@ -18,7 +18,7 @@ export function PlatformDiagram({ copy }: { copy: PlatformDiagramCopy }) {
         <ul className="grid gap-3 md:grid-cols-3">
           {copy.apps.map((app, index) => (
             <li key={index} className={`rounded-xl border border-line bg-paper p-3 ${index > 0 ? "max-md:hidden" : ""}`}>
-              <p className="mono-label px-1 text-[0.625rem] text-muted">
+              <p className="mono-label px-1 text-[0.6875rem] text-muted">
                 {app} 0{index + 1}
               </p>
               <div className="mt-3 rounded-lg border border-accent bg-accent-soft p-3">
@@ -29,7 +29,7 @@ export function PlatformDiagram({ copy }: { copy: PlatformDiagramCopy }) {
                   ))}
                 </ul>
               </div>
-              <p className="mono-label py-2 text-center text-[0.625rem] text-accent" aria-hidden="true">
+              <p className="mono-label py-2 text-center text-[0.6875rem] text-accent" aria-hidden="true">
                 ↓ {copy.props}
               </p>
               <div className="rounded-lg border border-line-strong p-3">

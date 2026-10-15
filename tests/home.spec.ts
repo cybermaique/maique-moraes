@@ -43,7 +43,7 @@ test.describe("homepage", () => {
     const page = await context.newPage();
     await page.goto("/");
     // João Pessoa is UTC−3 all year; New York is UTC−4 or UTC−5 depending on the season.
-    await expect(page.locator("#contact")).toContainText(/It’s .+ in João Pessoa — (1|2) h ahead of you\./);
+    await expect(page.locator("#contact")).toContainText(/It’s .+ in João Pessoa — (1|2)\sh ahead of you\./);
     await context.close();
   });
 

@@ -66,21 +66,21 @@ export function Hero({ t, locale }: { t: Dictionary; locale: Locale }) {
             </dl>
             <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-[0.9375rem]">
               <li>
-                <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="link-arrow link-draw inline-flex items-center gap-1.5">
+                <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="link-arrow link-draw hit-area inline-flex items-center gap-1.5">
                   LinkedIn
                   <ArrowUpRight size={15} />
                   <span className="sr-only">({t.a11y.newTab})</span>
                 </a>
               </li>
               <li>
-                <a href={profile.github} target="_blank" rel="noopener noreferrer" className="link-arrow link-draw inline-flex items-center gap-1.5">
+                <a href={profile.github} target="_blank" rel="noopener noreferrer" className="link-arrow link-draw hit-area inline-flex items-center gap-1.5">
                   GitHub
                   <ArrowUpRight size={15} />
                   <span className="sr-only">({t.a11y.newTab})</span>
                 </a>
               </li>
               <li>
-                <a href={`mailto:${profile.email}`} className="link-draw">
+                <a href={`mailto:${profile.email}`} className="link-draw hit-area">
                   {profile.email}
                 </a>
               </li>

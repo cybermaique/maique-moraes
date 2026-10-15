@@ -27,7 +27,7 @@ export function AiDiagram({ copy }: { copy: AiDiagramCopy }) {
               onClick={() => setActiveId(route.id)}
               className="dg-request"
             >
-              <span className="mono-label block text-[0.625rem] text-muted">{route.lane}</span>
+              <span className="mono-label block text-[0.6875rem] text-muted">{route.lane}</span>
               <span className="mt-1.5 block leading-snug">“{route.request}”</span>
             </button>
           ))}
@@ -37,7 +37,7 @@ export function AiDiagram({ copy }: { copy: AiDiagramCopy }) {
       <span className="dg-wire mx-auto" aria-hidden="true" />
       <div className="dg-node dg-node-primary mx-auto w-full max-w-sm">
         <span className="font-display text-base font-semibold tracking-tight normal-case">{copy.model}</span>
-        <span className="text-[0.625rem] text-muted">LLM</span>
+        <span className="text-[0.6875rem] text-muted">LLM</span>
       </div>
 
       <span className="dg-wire mx-auto" aria-hidden="true" />

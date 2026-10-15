@@ -25,7 +25,8 @@ function formatTime(minute: number, locale: Locale, timeZone: string) {
 function formatDuration(totalMinutes: number) {
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
-  return minutes ? `${hours} h ${minutes} min` : `${hours} h`;
+  // Non-breaking spaces keep "3 h" and "30 min" together when the sentence wraps.
+  return minutes ? `${hours}\u00a0h ${minutes}\u00a0min` : `${hours}\u00a0h`;
 }
 
 interface ClockProps {
@@ -68,7 +69,7 @@ export function TimeDifference({ locale, timeZone, utcOffsetMinutes, templates, 
 
   return (
     <p className={className}>
-      <span aria-hidden="true" className="live-dot shrink-0" />
+      <span aria-hidden="true" className="live-dot mt-[0.45em] shrink-0" />
       <span>{text}</span>
     </p>
   );

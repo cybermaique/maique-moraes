@@ -106,7 +106,7 @@ export function SiteHeader({ locale, homeHref, alternateHref, nav, a11y, trackSe
           <span className="font-display text-[1.05rem] font-semibold tracking-[-0.01em] whitespace-nowrap">Maique Moraes</span>
         </a>
 
-        <nav aria-label={a11y.primaryNav} className="hidden md:block">
+        <nav aria-label={a11y.primaryNav} className="hidden lg:block">
           <ul className="flex items-center gap-8">
             {links.map((link) => (
               <li key={link.id}>
@@ -151,7 +151,7 @@ export function SiteHeader({ locale, homeHref, alternateHref, nav, a11y, trackSe
           <button
             ref={toggleRef}
             type="button"
-            className="relative flex size-10 items-center justify-center rounded-full border border-line-strong md:hidden"
+            className="relative flex size-10 items-center justify-center rounded-full border border-line-strong lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? a11y.closeMenu : a11y.openMenu}
@@ -173,7 +173,7 @@ export function SiteHeader({ locale, homeHref, alternateHref, nav, a11y, trackSe
         id="mobile-menu"
         aria-label={a11y.primaryNav}
         hidden={!open}
-        className="border-t border-line bg-paper md:hidden"
+        className="border-t border-line bg-paper lg:hidden"
       >
         <ul className="shell flex flex-col py-3">
           {links.map((link, index) => (
